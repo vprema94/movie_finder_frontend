@@ -1,0 +1,56 @@
+#open-page {
+   background-image: url('../images/popcorn3.jpg');
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 1450px;
+   height: 825px;
+   text-align: center;
+   justify-content: center;
+   align-content: center;
+}
+
+.title {
+   font-size: 70px;
+   color: black;
+}
+
+input {
+   text-align: center;
+}
+
+#login {
+   top: 24%;
+   left: 36%;
+   width: 378px;
+}
+
+#signup {
+   top: 19%;
+   left: 36%;
+   width: 378px;
+}
+
+.submit-btn {
+   font-size: 18px;
+   letter-spacing: 4px;
+}
+
+#back-btn {
+   font-size: 18px;
+   letter-spacing: 4px;
+   margin-left: -29em;
+   margin-top: 2em;
+}
+
+#buttons {
+   /* position: absolute;
+   margin-left: 25%;
+   margin-top: 25%; */
+}
+
+#login-btn, #signup-btn {
+   font-size: 24px;
+   letter-spacing: 5px;
+   margin-left: 8px;
+   margin-right: 8px
+}
