@@ -1,69 +1,45 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
+import { connect } from 'react-redux';
+import { changeForm, changePage } from '../actions/changingRenders'
+import { handleNewUser } from '../sofetch/users'
 
 class OpeningPage extends Component {
-	constructor() {
-		super()
 
-		this.state = {
-			whichForm: 'b'
-		}
-	}
+   state = {
+      username: '',
+      password: ''
+   }
 
-	handleShow = (event) => {
-		event.preventDefault()
-		this.setState({
-			whichForm: 'l'
-		})
-		event.target.reset()
-		// this.props.handleSignup(event)
-	}
+   handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+   } 
+
+   handleSubmit = event => {
+      event.preventDefault()
+      handleNewUser(this.state.username, this.state.password);
+      this.setState({
+        username: '',
+        password: ''
+      })
+      this.props.changeForm('l')
+   }
 
 	render() {
-		const signup = 
-			<Form
-				id='signup'
-				onSubmit={(event) => this.handleShow(event)}>
-			<h1 className='title'>SIGN UP</h1>
-				
-				<Form.Field>
-					<input
-						placeholder='USERNAME'
-						name='newName'
-						// onChange={(event) => this.props.handleChange(event)}
-                  />
-				</Form.Field>
-				
-				<Form.Field>
-					<input
-						placeholder='PASSWORD'
-						name='newPassword'
-						type='password'
-						// onChange={(event) => this.props.handleChange(event)}
-                  />
-				</Form.Field>
-		
-				<Button
-					className='submit-btn'
-					color='red'
-					type='submit'>
-					SIGN UP
-				</Button>
-			</Form>
-			
-		
 		const login = 
 			<Form
 				id='login'
-				// onSubmit={this.props.handleLogin}
+				onSubmit={() => this.props.changePage('a')}
             >
-			<h1 className='title'>LOGIN TO PLAY!</h1>
+			<h1 className='title'>LOGIN</h1>
 				<Form.Field>
 					<input
-						placeholder='NAME'
-						name='name'
-						// onChange={(event) => this.props.handleChange(event)}
+						placeholder='USERNAME'
+						name='username'
+						onChange={this.handleChange}
                   />
 				</Form.Field>
 				
@@ -72,7 +48,7 @@ class OpeningPage extends Component {
 						placeholder='PASSWORD'
 						name='password'
 						type='password'
-						// onChange={(event) => this.props.handleChange(event)} 
+                  onChange={this.handleChange}
                   />
 				</Form.Field>
 		
@@ -83,25 +59,52 @@ class OpeningPage extends Component {
 					LOGIN
 				</Button>
 			</Form>
+      
+      const signup = 
+			<Form
+				id='signup'
+				onSubmit={(event) => this.handleSubmit(event)}>
+			<h1 className='title'>SIGN UP</h1>
+				
+				<Form.Field>
+					<input
+						placeholder='USERNAME'
+						name='username'
+                  onChange={this.handleChange}
+                  />
+				</Form.Field>
+				
+				<Form.Field>
+					<input
+						placeholder='PASSWORD'
+						name='password'
+						type='password'
+                  onChange={this.handleChange}
+                  />
+				</Form.Field>
 		
+				<Button
+					className='submit-btn'
+					color='red'
+					type='submit'>
+					SIGN UP
+				</Button>
+			</Form>
 
 		const buttons = 
 			<div id='buttons'>
-				<h1 className='title'>MOVIE FINDER</h1>
-
-				<br />
-				
+				<h1 className='title'>MOVIE FINDER</h1>				
 				<Button
+               color='black'
 					id='login-btn'
-					color='red'
-					onClick={() => this.setState({whichForm: 'l'})}>
+					onClick={() => this.props.changeForm('l')}>
 					LOGIN
 				</Button>
 
 				<Button
 					id='signup-btn'
-               inverted
-					onClick={() => this.setState({whichForm: 's'})}>
+               color='red'
+					onClick={() => this.props.changeForm('s')}>
 					SIGN UP
 				</Button>
 			</div>
@@ -110,8 +113,8 @@ class OpeningPage extends Component {
 			<div>
 				<Button
 					id='back-btn'
-					inverted
-					onClick={() => this.setState({whichForm: 'b'})}>
+               color='black'
+					onClick={() => this.props.changeForm('b')}>
 					GO BACK
 				</Button>
 			</div>
@@ -119,19 +122,19 @@ class OpeningPage extends Component {
 		let whichForm;
 		let goBack;
 
-		if (this.state.whichForm === 'b') {
+		if (this.props.whichForm === 'b') {
 			whichForm = buttons
 			goBack = null
-		} else if (this.state.whichForm === 'l') {
+		} else if (this.props.whichForm === 'l') {
 			whichForm = login
 			goBack = goBackBtn
-		} else if (this.state.whichForm === 's') {
+		} else if (this.props.whichForm === 's') {
 			whichForm = signup
 			goBack = goBackBtn
 		}
  		
 		return (
-			<div class='ui inverted vertical center aligned segment'
+			<div className='ui inverted vertical center aligned segment'
 				id='open-page'>
 				{whichForm}
 				{goBack}
@@ -140,4 +143,10 @@ class OpeningPage extends Component {
 	}
 }
 
-export default OpeningPage;
+const mapStatetoProps = state => {
+   return ({
+     whichForm: state.renders.whichForm
+   })
+}
+
+export default connect(mapStatetoProps, { changePage, changeForm })(OpeningPage);

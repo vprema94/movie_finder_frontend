@@ -7,27 +7,34 @@
 }
 
 .title {
-   font-size: 70px;
-   color: black;
+   font-size: 75px;
+   color: #1b1c1d;
+   font-family: 'Righteous', cursive;
+   margin-bottom: 10px;
+}
+
+#title2 {
+   color: red
 }
 
 input {
    text-align: center;
+   font-size: 20px
 }
 
 #login {
-   top: 24%;
-   left: 36%;
-   width: 378px;
+   margin-top: 13%;
+   margin-left: 38%;
+   width: 280px;
 }
 
 #signup {
-   top: 19%;
-   left: 36%;
-   width: 378px;
+   margin-top: 13%;
+   margin-left: 36%;
+   width: 295px;
 }
 
-.submit-btn {
+.ui.button.submit-btn {
    font-size: 18px;
    letter-spacing: 4px;
 }
@@ -35,8 +42,9 @@ input {
 #back-btn {
    font-size: 18px;
    letter-spacing: 4px;
-   margin-left: -29em;
-   margin-top: 2em;
+   left: 2em;
+   top: 2em;
+   position: absolute;
 }
 
 #buttons {
@@ -44,7 +52,7 @@ input {
 }
 
 #login-btn, #signup-btn {
-   font-size: 24px;
+   font-size: 20px;
    letter-spacing: 5px;
    margin-left: 8px;
    margin-right: 8px

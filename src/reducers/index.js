@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import movies from './movies';
+import changingRenders from './changingRenders';
 
-export default combineReducers({
-  movies
+ const rootReducer = combineReducers({
+  renders: changingRenders
 });
+
+export default rootReducer
