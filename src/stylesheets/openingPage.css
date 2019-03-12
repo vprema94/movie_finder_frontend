@@ -2,11 +2,8 @@
    background-image: url('../images/popcorn3.jpg');
    background-size: cover;
    background-repeat: no-repeat;
-   width: 1450px;
-   height: 825px;
-   text-align: center;
-   justify-content: center;
-   align-content: center;
+   width: 100%;
+   min-height: 800px;
 }
 
 .title {
@@ -43,9 +40,7 @@ input {
 }
 
 #buttons {
-   /* position: absolute;
-   margin-left: 25%;
-   margin-top: 25%; */
+   margin-top: 15%;
 }
 
 #login-btn, #signup-btn {

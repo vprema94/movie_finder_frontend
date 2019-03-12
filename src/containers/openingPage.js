@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 
 class OpeningPage extends Component {
@@ -93,14 +93,14 @@ class OpeningPage extends Component {
 				
 				<Button
 					id='login-btn'
-					inverted
+					color='red'
 					onClick={() => this.setState({whichForm: 'l'})}>
 					LOGIN
 				</Button>
 
 				<Button
 					id='signup-btn'
-					color='red'
+               inverted
 					onClick={() => this.setState({whichForm: 's'})}>
 					SIGN UP
 				</Button>
@@ -131,11 +131,11 @@ class OpeningPage extends Component {
 		}
  		
 		return (
-			<Grid
+			<div class='ui inverted vertical center aligned segment'
 				id='open-page'>
 				{whichForm}
 				{goBack}
-			</Grid>
+			</div>
 		)
 	}
 }
