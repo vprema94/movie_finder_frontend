@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './stylesheets/App.css';
-import OpeningPage from './containers/openingPage';
+import OpeningPage from './pages/openingPage';
+import LandingPage from './pages/landingPage';
 import { connect } from 'react-redux';
 // import { Segment } from 'semantic-ui-react';
 
@@ -14,7 +15,9 @@ class App extends Component {
       );
     } else if (this.props.whichPage === 'a') {
       return (
-        <div>{null}</div>
+        <div>
+          <LandingPage />
+        </div>
       )
     }
   }

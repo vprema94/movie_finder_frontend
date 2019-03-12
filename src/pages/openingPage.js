@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
 import { changeForm, changePage } from '../actions/changingRenders'
-import { handleNewUser } from '../sofetch/users'
+import { handleNewUser } from '../sofetch/services'
 
 class OpeningPage extends Component {
 
@@ -36,26 +36,31 @@ class OpeningPage extends Component {
             >
 			<h1 className='title'>LOGIN</h1>
 				<Form.Field>
-					<input
+					<Input
 						placeholder='USERNAME'
 						name='username'
 						onChange={this.handleChange}
+						icon='user' 
+						iconPosition='left'
                   />
 				</Form.Field>
 				
 				<Form.Field>
-					<input
+					<Input
 						placeholder='PASSWORD'
 						name='password'
 						type='password'
                   onChange={this.handleChange}
+						icon='lock' 
+						iconPosition='left'
                   />
 				</Form.Field>
 		
 				<Button
 					className='submit-btn'
 					color='red'
-					type='submit'>
+					type='submit'
+					fluid size='large'>
 					LOGIN
 				</Button>
 			</Form>
@@ -67,26 +72,31 @@ class OpeningPage extends Component {
 			<h1 className='title'>SIGN UP</h1>
 				
 				<Form.Field>
-					<input
+					<Input
 						placeholder='USERNAME'
 						name='username'
                   onChange={this.handleChange}
+						icon='user' 
+						iconPosition='left'
                   />
 				</Form.Field>
 				
 				<Form.Field>
-					<input
+					<Input
 						placeholder='PASSWORD'
 						name='password'
 						type='password'
                   onChange={this.handleChange}
+						icon='lock' 
+						iconPosition='left'
                   />
 				</Form.Field>
 		
 				<Button
 					className='submit-btn'
 					color='red'
-					type='submit'>
+					type='submit'
+					fluid size='large'>
 					SIGN UP
 				</Button>
 			</Form>
