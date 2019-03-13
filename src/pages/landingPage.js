@@ -3,7 +3,7 @@ import LandingBar from '../containers/landingBar';
 import MovieCards from '../containers/movieCards';
 import '../stylesheets/landingPage.css';
 import { connect } from 'react-redux';
-import { landMovies } from '../actions/allReducers'
+import { landMovies } from '../actions/allActions'
 import { getMovies } from '../sofetch/services';
 
 class LandingPage extends Component {

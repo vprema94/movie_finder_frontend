@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/moviePage.css';
 import { connect } from 'react-redux';
-import { Container, Header, Image, Divider } from 'semantic-ui-react';
+import { Container, Header, Image, Divider, Card } from 'semantic-ui-react';
 
 class MoviePage extends Component {
    render() {
@@ -12,12 +12,15 @@ class MoviePage extends Component {
                <Header id='movie-title-header'>{this.props.movieInfo.title} ({this.props.movieInfo.release_year})</Header>
                <Header id='sub-header'>{genres.join(', ')}</Header>
             </Container> 
+
             <Divider />
+
             <Container id='movie-pg-body'>
                <Container id='movie-poster'>
                   <Image src={this.props.movieInfo['poster_400x570']}></Image>
                </Container>
-               <Container id='movie-info'>
+               
+               <Container id='movie-stuff'>
                   <b>OVERVIEW</b>
                   <Divider />
                   <p>{this.props.movieInfo.overview}</p>
@@ -26,6 +29,7 @@ class MoviePage extends Component {
                   <Divider />
                </Container>
             </Container>
+
          </Container>
       )
    }

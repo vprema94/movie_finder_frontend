@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { clickMovie } from '../actions/allReducers'
+import { clickMovie } from '../actions/allActions'
 import { getMovieInfo } from '../sofetch/services'
 
 class MovieCard extends Component {

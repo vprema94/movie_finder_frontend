@@ -21,7 +21,7 @@ class App extends Component {
       )
     } else if (this.props.whichPage === 'm') {
       return (
-        <div>
+        <div id="movie-background">
           <MoviePage />
         </div>
       )

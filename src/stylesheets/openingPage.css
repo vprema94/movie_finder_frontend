@@ -10,14 +10,20 @@
 }
 
 .title {
-   font-size: 75px;
+   font-size: 90px;
    color: #1b1c1d;
    font-family: 'Righteous', cursive;
    margin-bottom: 20px;
-}
+   letter-spacing: 3px;
+} 
 
-#title2 {
-   color: red
+#main-title {
+   font-size: 150px;
+   color: #1b1c1d;
+   font-family: 'Righteous', cursive;
+   margin-bottom: 18px;
+   text-shadow:3px 3px 10px white;
+   letter-spacing: 3px;
 }
 
 input {
@@ -26,12 +32,12 @@ input {
 }
 
 #login {
-   width: 280px;
+   width: fit-content;
    margin-bottom: 7em;
 }
 
 #signup {
-   width: 295px;
+   width: fit-content;
    margin-bottom: 7em;
 }
 
@@ -54,8 +60,7 @@ input {
 }
 
 #login-btn, #signup-btn {
-   font-size: 20px;
+   font-size: 22px;
    letter-spacing: 5px;
-   margin-left: 8px;
-   margin-right: 8px;
+   margin: 0px 12px 0px 12px;
 }

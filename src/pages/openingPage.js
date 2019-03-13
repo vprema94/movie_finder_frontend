@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
-import { changeForm, changePage } from '../actions/allReducers'
+import { changeForm, changePage } from '../actions/allActions'
 import { handleNewUser } from '../sofetch/services'
 
 class OpeningPage extends Component {
@@ -103,7 +103,7 @@ class OpeningPage extends Component {
 
 		const buttons = 
 			<div id='buttons'>
-				<h1 className='title'>CINEPOP</h1>				
+				<h1 id='main-title'>CINEPOP</h1>				
 				<Button
                color='black'
 					id='login-btn'

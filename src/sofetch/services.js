@@ -17,7 +17,7 @@ export const handleNewUser = (username, password) => {
 } 
 
 export const getMovies = () => {
-   return fetch(`${GB_BASE}&limit=50`, {
+   return fetch(`${GB_BASE}&limit=56`, {
       method: "GET"
    }).then(res => res.json())
 }

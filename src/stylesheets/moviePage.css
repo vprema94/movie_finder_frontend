@@ -1,11 +1,11 @@
 #movie-pg-container {
    display: flex;
    padding: 3em;  
-   margin-top: 1em;
    flex-direction: column;
    width: fit-content;
    justify-content: center;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   background-color:white
 }
 
 #movie-pg-header {
@@ -33,12 +33,27 @@
    margin-top: 1.5em;
 } 
 
-#movie-info {
+#movie-stuff {
    font-size: 18px;
    display: flex;
    flex-direction: column
 } 
 
+/* #movie-poster {
+   width: 802px;
+   margin-right: 3em
+} */
+
 b {
    font-size: 25px
+} 
+
+/* #sources-container {
+
+}  */
+
+#source-icon {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
 }
