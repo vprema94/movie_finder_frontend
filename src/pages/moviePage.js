@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../stylesheets/moviePage.css';
 import { connect } from 'react-redux';
-import { Container, Header, Image, Divider, Card } from 'semantic-ui-react';
+import { Container, Header, Image, Divider, Grid } from 'semantic-ui-react';
 
 class MoviePage extends Component {
    render() {
@@ -15,21 +15,30 @@ class MoviePage extends Component {
 
             <Divider />
 
-            <Container id='movie-pg-body'>
-               <Container id='movie-poster'>
-                  <Image src={this.props.movieInfo['poster_400x570']}></Image>
-               </Container>
-               
-               <Container id='movie-stuff'>
-                  <b>OVERVIEW</b>
-                  <Divider />
-                  <p>{this.props.movieInfo.overview}</p>
-                  <br/><br/>
-                  <b>WATCH IT ON:</b>
-                  <Divider />
-               </Container>
-            </Container>
+            <Grid columns={2} >
+               <Grid.Row id='movie-pg-body'>
+                  <Grid.Column>
+                     <Container id='movie-poster'>
+                        <Image src={this.props.movieInfo['poster_400x570']}></Image>
+                     </Container>
+                  </Grid.Column>
 
+                  <Grid.Column>
+                     <Container id='movie-stuff'>
+                        <b>OVERVIEW</b>
+                        <Divider />
+                        <p>{this.props.movieInfo.overview}</p>
+                        <br/><br/>
+                        <b>WATCH IT ON:</b>
+                        <Divider />
+                        <Container>
+                           hello
+                        </Container>
+                     </Container>
+                  </Grid.Column>
+
+               </Grid.Row>
+            </Grid>
          </Container>
       )
    }

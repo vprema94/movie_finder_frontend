@@ -1,8 +1,8 @@
 #movie-pg-container {
    display: flex;
-   padding: 3em;  
+   padding: 3em;
    flex-direction: column;
-   width: fit-content;
+   width: min-content;
    justify-content: center;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    background-color:white
@@ -39,10 +39,10 @@
    flex-direction: column
 } 
 
-/* #movie-poster {
-   width: 802px;
-   margin-right: 3em
-} */
+#movie-poster {
+   display: flex;
+   justify-content: center
+}
 
 b {
    font-size: 25px
