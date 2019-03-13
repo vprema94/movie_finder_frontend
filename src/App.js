@@ -25,7 +25,7 @@ class App extends Component {
 
 const mapStatetoProps = state => {
   return ({
-    whichPage: state.renders.whichPage
+    whichPage: state.changingRenders.whichPage
   })
 }
 

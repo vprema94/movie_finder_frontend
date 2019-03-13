@@ -1,5 +1,5 @@
 const API = 'http://localhost:3000';
-const GB_BASE = 'http://api-public.guidebox.com/v2'
+const KEY = ''
 
 export const handleNewUser = (username, password) => {
    return fetch(`${API}/users`, {
@@ -15,9 +15,7 @@ export const handleNewUser = (username, password) => {
 } 
 
 export const getMovies = () => {
-   return fetch(`${GB_BASE}/movies?limit=50`, {
-      method: "GET",
-      headers: {
-      }
+   return fetch(`http://api-public.guidebox.com/v2/movies?api_key=${KEY}&limit=50`, {
+      method: "GET"
    }).then(res => res.json())
 }

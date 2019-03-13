@@ -1,6 +1,7 @@
 let initialRenderState = {
   whichPage: 'o',
-  whichForm: 'b'
+  whichForm: 'b',
+  landingMovies: []
 }
 
 export default (state=initialRenderState, action) => {
@@ -15,6 +16,13 @@ export default (state=initialRenderState, action) => {
         return {
           ...state, 
           whichForm: action.letter
+        }
+
+      case 'LAND_MOVIES':
+        return {
+          ...state,
+          whichPage: 'a', 
+          landingMovies: action.data
         }
 
     default:

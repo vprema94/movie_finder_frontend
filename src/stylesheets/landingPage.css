@@ -34,3 +34,10 @@
    font-size: 20px;
 }
 
+#card-content {
+   padding: 8px;
+   text-align: center;
+   font-size: 15px;
+   padding-bottom: 10px
+}
+

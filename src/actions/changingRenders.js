@@ -11,3 +11,10 @@ export const changeForm = (letter) => {
       letter
    }
 } 
+
+export const landMovies = (data) => {
+   return {
+      type: 'LAND_MOVIES',
+      data
+   }
+}

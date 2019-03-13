@@ -155,7 +155,7 @@ class OpeningPage extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     whichForm: state.renders.whichForm
+     whichForm: state.changingRenders.whichForm
    })
 }
 
