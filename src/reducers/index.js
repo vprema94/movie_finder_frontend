@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import changingRenders from './changingRenders';
+import allReducers from './allReducers';
 
 const rootReducer = combineReducers({
-  changingRenders
+  allReducers
 });
 
 export default rootReducer

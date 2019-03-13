@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import MovieCard from '../components/movieCard' 
+import { Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 class MovieCards extends Component {
 
    render() {
-      const mapMovies = this.props.landingMovies.map((movie, index) => 
-      <Card key={index}>
-         <Image src={movie['poster_240x342']} />
-         {/* <Card.Content id='card-content'>
-            <Card.Header>{movie.title}</Card.Header>
-         </Card.Content> */}
-      </Card>)
+      const mapMovies = this.props.landingMovies.map((movie) => 
+      <MovieCard 
+         key={movie.id}
+         movieId={movie.id}
+         img={movie['poster_240x342']} />)
 
       return(
-         <Card.Group itemsPerRow={6}>
+         <Card.Group itemsPerRow={7}>
             {mapMovies}
          </Card.Group>
       )
@@ -23,7 +22,7 @@ class MovieCards extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     landingMovies: state.changingRenders.landingMovies
+     landingMovies: state.allReducers.landingMovies
    })
 }
 

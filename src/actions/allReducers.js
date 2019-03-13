@@ -18,3 +18,10 @@ export const landMovies = (data) => {
       data
    }
 }
+
+export const clickMovie = (movieInfo) => {
+   return {
+      type: 'CLICK_MOVIE',
+      movieInfo
+   }
+}

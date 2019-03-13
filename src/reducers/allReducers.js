@@ -1,10 +1,10 @@
-let initialRenderState = {
+let initialState = {
   whichPage: 'o',
   whichForm: 'b',
   landingMovies: []
 }
 
-export default (state=initialRenderState, action) => {
+export default (state=initialState, action) => {
   switch (action.type) {
       case 'CHANGE_PAGE':
         return {
@@ -24,8 +24,15 @@ export default (state=initialRenderState, action) => {
           whichPage: 'a', 
           landingMovies: action.data
         }
+      
+      case 'CLICK_MOVIE':
+        return {
+          ...state,
+          whichPage: 'm',
+          movieInfo: action.movieInfo
+        }
 
     default:
-      return initialRenderState;
+      return initialState;
     }
 }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './stylesheets/App.css';
 import OpeningPage from './pages/openingPage';
 import LandingPage from './pages/landingPage';
+import MoviePage from './pages/moviePage';
 import { connect } from 'react-redux';
-// import { Segment } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
@@ -19,13 +19,25 @@ class App extends Component {
           <LandingPage />
         </div>
       )
-    }
+    } else if (this.props.whichPage === 'm') {
+      return (
+        <div>
+          <MoviePage />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          DID YOU CHANGE whichPage CORRECTLY?
+        </div>
+      )
+    } 
   }
 }
 
 const mapStatetoProps = state => {
   return ({
-    whichPage: state.changingRenders.whichPage
+    whichPage: state.allReducers.whichPage
   })
 }
 
