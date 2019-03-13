@@ -3,13 +3,15 @@ import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
 import { changeForm, changePage } from '../actions/allActions'
-import { handleNewUser } from '../sofetch/services'
+import { handleNewUser, getAuthToken } from '../sofetch/services'
 
 class OpeningPage extends Component {
 
    state = {
       username: '',
-      password: ''
+		password: '',
+		newUsername: '',
+		newPassword: ''
    }
 
    handleChange = (event) => {
@@ -18,21 +20,37 @@ class OpeningPage extends Component {
       })
    } 
 
-   handleSubmit = event => {
+   handleSignup = (event) => {
       event.preventDefault()
-      handleNewUser(this.state.username, this.state.password);
+		handleNewUser(this.state.newUsername, this.state.newPassword);
+		event.target.reset()
+		this.props.changeForm('l')
       this.setState({
-        username: '',
-        password: ''
-      })
-      this.props.changeForm('l')
-   }
+        newUsername: '',
+        newPassword: ''
+		})
+	} 
+	
+	handleLogin = () => {
+		getAuthToken({ username: this.state.username, password: this.state.password}).then(payload => {
+			if (payload.user) {
+				localStorage.setItem("token", payload.token)
+				this.props.changePage('a')
+				// return fetch(`${API}/users/${payload.user.id.toString()}`).then(this.finishLogin)
+			} else {
+				alert("INVALID LOGIN!")
+			}
+		})
+	}
+
+	//finishLogin in services, edit to include favorites and fetch user data
+
 
 	render() {
 		const login = 
 			<Form
 				id='login'
-				onSubmit={() => this.props.changePage('a')}
+				onSubmit={this.handleLogin}
             >
 			<h1 className='title'>LOGIN</h1>
 				<Form.Field>
@@ -68,13 +86,13 @@ class OpeningPage extends Component {
       const signup = 
 			<Form
 				id='signup'
-				onSubmit={(event) => this.handleSubmit(event)}>
+				onSubmit={this.handleSignup}>
 			<h1 className='title'>SIGN UP</h1>
 				
 				<Form.Field>
 					<Input
 						placeholder='USERNAME'
-						name='username'
+						name='newUsername'
                   onChange={this.handleChange}
 						icon='user' 
 						iconPosition='left'
@@ -84,7 +102,7 @@ class OpeningPage extends Component {
 				<Form.Field>
 					<Input
 						placeholder='PASSWORD'
-						name='password'
+						name='newPassword'
 						type='password'
                   onChange={this.handleChange}
 						icon='lock' 
@@ -155,7 +173,7 @@ class OpeningPage extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     whichForm: state.allReducers.whichForm
+     whichForm: state.whichForm
    })
 }
 

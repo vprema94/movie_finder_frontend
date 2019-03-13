@@ -37,7 +37,7 @@ class App extends Component {
 
 const mapStatetoProps = state => {
   return ({
-    whichPage: state.allReducers.whichPage
+    whichPage: state.whichPage
   })
 }
 

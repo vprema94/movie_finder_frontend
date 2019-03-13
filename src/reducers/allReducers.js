@@ -1,7 +1,8 @@
 let initialState = {
   whichPage: 'o',
   whichForm: 'b',
-  landingMovies: []
+  landingMovies: [],
+  movieInfo: []
 }
 
 export default (state=initialState, action) => {

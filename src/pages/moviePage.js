@@ -36,9 +36,9 @@ class MoviePage extends Component {
 } 
 
 const mapStatetoProps = state => {
-   console.log(state.allReducers.movieInfo)
+   console.log(state.movieInfo)
    return ({
-     movieInfo: state.allReducers.movieInfo
+     movieInfo: state.movieInfo
    })
 }
 

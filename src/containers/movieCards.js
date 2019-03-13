@@ -22,7 +22,7 @@ class MovieCards extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     landingMovies: state.allReducers.landingMovies
+     landingMovies: state.landingMovies
    })
 }
 
