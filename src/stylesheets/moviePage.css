@@ -53,13 +53,13 @@ b {
 
 #sources-container {
    display: flex;
+   justify-content: space-around;
 } 
 
 #source-icon {
 	width: 70px;
    height: 70px;
    overflow: hidden;
-   background-color: black;
    margin: 0px 8px 0px 8px;
 } 
 
@@ -76,19 +76,3 @@ b {
 #cast-cards {
    padding-top: 0px
 }
-
-/* #member-img-cont{
-   display: flex;
-   justify-content: center;
-} */
-
-/* #member-image {
-   width: 135px;
-   height: 200px;
-} */
-
-/* #member-name {
-   font-size: 18px;
-   display: flex;
-   
-} */

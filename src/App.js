@@ -5,9 +5,28 @@ import LandingPage from './pages/landingPage';
 import MoviePage from './pages/moviePage';
 import PersonPage from './pages/personPage';
 import { connect } from 'react-redux';
+import { changePage } from './actions/allActions'
+import { Button } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
+
+  const homeBtn =
+    <Button
+      id='back-btn'
+      inverted
+      onClick={() => this.props.changePage('a')}>
+      HOME
+    </Button>
+
+  const logoutBtn =
+    <Button
+      id='logout-btn'
+      inverted
+      onClick={() => window.location.reload()}>
+      LOGOUT
+    </Button>
+
     if (this.props.whichPage === 'o') {
       return (
         <div>
@@ -18,18 +37,21 @@ class App extends Component {
       return (
         <div>
           <LandingPage />
+          {logoutBtn}
         </div>
       )
     } else if (this.props.whichPage === 'm') {
       return (
         <div id="movie-background">
           <MoviePage />
+          {homeBtn}
         </div>
       )
     } else if (this.props.whichPage === 'p') {
       return (
         <div id="movie-background">
           <PersonPage />
+          {homeBtn}
         </div>
       )
     } else {
@@ -48,4 +70,4 @@ const mapStatetoProps = state => {
   })
 }
 
-export default connect(mapStatetoProps)(App);
+export default connect(mapStatetoProps, {changePage})(App);

@@ -8,7 +8,7 @@ class MovieBar extends Component {
       return(
          <Container id='movie-pg-header'>
             <Header id='movie-title-header'>{this.props.movieInfo.title} ({this.props.movieInfo.release_year})</Header>
-            <Header id='sub-header'>{genres.join(', ')}</Header>
+            <Header id='sub-header'> {this.props.movieInfo.rating} | {genres.join(', ')}</Header>
          </Container> 
       )
    }

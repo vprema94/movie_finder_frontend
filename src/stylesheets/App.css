@@ -8,4 +8,20 @@ body {
    width: auto;
    height: auto;
    padding: 3em 0px 3em 0px;
+} 
+
+#back-btn {
+   font-size: 18px;
+   letter-spacing: 4px;
+   left: 2em;
+   top: 2em;
+   position: absolute;
+}
+
+#logout-btn {
+   font-size: 18px;
+   letter-spacing: 4px;
+   right: 3em;
+   top: 1em;
+   position: absolute;
 }
