@@ -18,10 +18,7 @@ body {
    position: absolute;
 }
 
-#logout-btn {
-   font-size: 18px;
-   letter-spacing: 4px;
-   right: 3em;
-   top: 1em;
-   position: absolute;
+
+#nav-bar {
+   margin: 1em 3em 1em 3em
 }
