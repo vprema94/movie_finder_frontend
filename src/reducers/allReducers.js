@@ -2,7 +2,9 @@ let initialState = {
   whichPage: 'o',
   whichForm: 'b',
   landingMovies: [],
-  movieInfo: []
+  movieInfo: [],
+  personInfo: [],
+  personMovies: []
 }
 
 export default (state=initialState, action) => {
@@ -31,6 +33,20 @@ export default (state=initialState, action) => {
           ...state,
           whichPage: 'm',
           movieInfo: action.movieInfo
+        }
+      
+      case 'CLICK_PERSON':
+        return {
+          ...state,
+          whichPage: 'p',
+          personInfo: action.personInfo
+        }
+
+      case 'CLICK_PERSON_TWO':
+        return {
+          ...state,
+          whichPage: 'p',
+          personMovies: action.personMovies
         }
 
     default:

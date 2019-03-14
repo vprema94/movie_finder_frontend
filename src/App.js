@@ -3,6 +3,7 @@ import './stylesheets/App.css';
 import OpeningPage from './pages/openingPage';
 import LandingPage from './pages/landingPage';
 import MoviePage from './pages/moviePage';
+import PersonPage from './pages/personPage';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -23,6 +24,12 @@ class App extends Component {
       return (
         <div id="movie-background">
           <MoviePage />
+        </div>
+      )
+    } else if (this.props.whichPage === 'p') {
+      return (
+        <div id="movie-background">
+          <PersonPage />
         </div>
       )
     } else {

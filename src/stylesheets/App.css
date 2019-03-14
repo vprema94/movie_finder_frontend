@@ -4,7 +4,7 @@ body {
 
 #movie-background {
    background-image: url('../images/popcorn3.jpg');
-   background-size: cover;
+   background-repeat: repeat-y;
    width: auto;
    height: auto;
    padding: 3em 0px 3em 0px;

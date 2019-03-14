@@ -25,3 +25,17 @@ export const clickMovie = (movieInfo) => {
       movieInfo
    }
 }
+
+export const clickPerson = (personInfo) => {
+   return {
+      type: 'CLICK_PERSON',
+      personInfo
+   }
+}
+
+export const clickPersonTwo = (personMovies) => {
+   return {
+      type: 'CLICK_PERSON_TWO',
+      personMovies
+   }
+}

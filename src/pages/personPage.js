@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import '../stylesheets/moviePage.css';
 import { connect } from 'react-redux';
-import MovieBar from '../moviePage/movieBar';
-import MovieInfo from '../moviePage/movieInfo';
-import MoviePerson from '../moviePage/moviePerson';
+import PersonBar from '../personPage/personBar';
+import PersonInfo from '../personPage/personInfo';
+import PersonMovie from '../personPage/personMovie';
 import { Container, Divider, Grid, Card } from 'semantic-ui-react';
 
-class MoviePage extends Component {
+class PersonPage extends Component {
    render() {
-      const movieCast = this.props.movieInfo.cast.map((member) => 
-         <MoviePerson
-            key={member.id}
-            memberId={member.id}
-            img={member.image}
-            name={member.name}
-            character={member.character_name}
+      const featured = this.props.personMovies.map((movie) => 
+         <PersonMovie
+            key={movie.id}
+            movieId={movie.id}
+            img={movie['poster_400x570']}
+            title={movie.title}
+            character={movie.character_name}
             />)
 
       return(
          <Container id='movie-pg-container'>
-            <MovieBar />
+            <PersonBar />
             <Divider />
             <Grid columns={2} >
-               <MovieInfo />
+               <PersonInfo />
                <Grid.Row id='cast-container'>
-                  <b>CAST</b>
+                  <b>FEATURED IN</b>
                   <Divider />
                   <br/>
                   <Card.Group id='cast-cards' itemsPerRow={6}>
-                     {movieCast}
+                     {featured}
                   </Card.Group>
                </Grid.Row>
             </Grid>
@@ -38,10 +38,9 @@ class MoviePage extends Component {
 } 
 
 const mapStatetoProps = state => {
-   console.log(state.movieInfo)
    return ({
-     movieInfo: state.movieInfo
+     personMovies: state.personMovies
    })
 }
 
-export default connect(mapStatetoProps)(MoviePage);
+export default connect(mapStatetoProps)(PersonPage);

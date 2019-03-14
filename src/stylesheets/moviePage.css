@@ -1,6 +1,6 @@
 #movie-pg-container {
    display: flex;
-   padding: 3em;
+   padding: 3em 6em 3em 6em;
    flex-direction: column;
    width: min-content;
    justify-content: center;
@@ -33,6 +33,7 @@
 #movie-pg-body {
    display: flex;
    margin-top: 1.5em;
+   padding-bottom: 5em;
 } 
 
 #movie-stuff {
@@ -66,3 +67,28 @@ b {
    width: inherit;
    height: inherit
 }
+
+#cast-container {
+   display:flex;
+   flex-direction: column;
+}
+
+#cast-cards {
+   padding-top: 0px
+}
+
+/* #member-img-cont{
+   display: flex;
+   justify-content: center;
+} */
+
+/* #member-image {
+   width: 135px;
+   height: 200px;
+} */
+
+/* #member-name {
+   font-size: 18px;
+   display: flex;
+   
+} */

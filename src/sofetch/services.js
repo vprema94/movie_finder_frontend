@@ -2,6 +2,7 @@ const LOCAL = 'http://localhost:3000';
 const KEY = ''
 const GB_BASE = `http://api-public.guidebox.com/v2/movies?api_key=${KEY}`
 const GB_MOVIE = `http://api-public.guidebox.com/v2/us/${KEY}/movie/`
+const GB_PERSON = `http://api-public.guidebox.com/v2/us/${KEY}/person/`
 
 export const handleNewUser = (username, password) => {
    return fetch(`${LOCAL}/users`, {
@@ -24,6 +25,18 @@ export const getMovies = () => {
 
 export const getMovieInfo = (movieId) => {
    return fetch(`${GB_MOVIE}${movieId}`, {
+      method: "GET"
+   }).then(res => res.json())
+}
+
+export const getPersonInfo = (personId) => {
+   return fetch(`${GB_PERSON}${personId}`, {
+      method: "GET"
+   }).then(res => res.json())
+}
+
+export const getPersonMovies = (personId) => {
+   return fetch(`${GB_PERSON}${personId}/credits/movies/cast`, {
       method: "GET"
    }).then(res => res.json())
 }
