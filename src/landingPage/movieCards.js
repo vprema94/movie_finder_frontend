@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MovieCard from '../components/movieCard' 
+import MovieCard from '../landingPage/movieCard' 
 import { Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 

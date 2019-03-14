@@ -1,5 +1,5 @@
 const LOCAL = 'http://localhost:3000';
-const KEY = '6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce'
+const KEY = ''
 const GB_BASE = `http://api-public.guidebox.com/v2/movies?api_key=${KEY}`
 const GB_MOVIE = `http://api-public.guidebox.com/v2/us/${KEY}/movie/`
 

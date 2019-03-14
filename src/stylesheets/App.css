@@ -6,6 +6,6 @@ body {
    background-image: url('../images/popcorn3.jpg');
    background-size: cover;
    width: auto;
-   height: 1000px;
-   padding-top: 3em;
+   height: auto;
+   padding: 3em 0px 3em 0px;
 }

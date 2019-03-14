@@ -5,7 +5,8 @@
    width: min-content;
    justify-content: center;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   background-color:white
+   background-color:white;
+   height: min-content;
 }
 
 #movie-pg-header {
@@ -18,6 +19,7 @@
    font-size: 72px;
    text-align: left;
    font-family: 'Righteous', cursive;
+   width: max-content;
 }
 
 #sub-header {
@@ -48,12 +50,19 @@ b {
    font-size: 25px
 } 
 
-/* #sources-container {
-
-}  */
+#sources-container {
+   display: flex;
+} 
 
 #source-icon {
-	width: 100px;
-	height: 100px;
-	overflow: hidden;
+	width: 70px;
+   height: 70px;
+   overflow: hidden;
+   background-color: black;
+   margin: 0px 8px 0px 8px;
+} 
+
+#icon-image {
+   width: inherit;
+   height: inherit
 }
