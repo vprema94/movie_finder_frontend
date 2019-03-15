@@ -1,9 +1,10 @@
 import netflix from '../images/icons/netflix.jpeg'
-import amazon from '../images/icons/amazon.png'
+import prime from '../images/icons/prime.jpg'
 import google from '../images/icons/google.png'
 import hbo from '../images/icons/hbo.png'
 import hulu from '../images/icons/hulu.jpg'
 import itunes from '../images/icons/itunes.png'
+import amazon from '../images/icons/amazon.png'
 import vudu from '../images/icons/vudu.png'
 import youtube from '../images/icons/youtube.png'
 
@@ -17,7 +18,7 @@ export const makeIcons = (movieInfo) => {
             sourceArr.push({...source, icon: netflix})
             break;
          case "Amazon Prime":
-            sourceArr.push({...source, icon: amazon})
+            sourceArr.push({...source, icon: prime})
             break;
          case "Hulu":
             sourceArr.push({...source, icon: hulu})

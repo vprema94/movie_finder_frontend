@@ -47,6 +47,13 @@ export const addFavorite = (favoriteMovie) => {
    }
 }
 
+export const setUserFavorites = (favoriteMovies) => {
+   return {
+      type: 'SET_USER_FAVORITES',
+      favoriteMovies
+   }
+}
+
 export const setCurrentUser = (user_id) => {
    return {
       type: 'SET_CURRENT_USER',

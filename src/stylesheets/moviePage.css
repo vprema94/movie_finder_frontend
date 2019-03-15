@@ -54,13 +54,14 @@ b {
 #sources-container {
    display: flex;
    justify-content: space-around;
+   flex-wrap: wrap
 } 
 
 #source-icon {
 	width: 70px;
    height: 70px;
    overflow: hidden;
-   margin: 0px 8px 0px 8px;
+   margin: 0px
 } 
 
 #icon-image {

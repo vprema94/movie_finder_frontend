@@ -1,5 +1,5 @@
 const LOCAL = 'http://localhost:3000';
-const KEY = '6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce'
+const KEY = ''
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
 
 export const handleNewUser = (username, password) => {
@@ -76,6 +76,7 @@ export const handleNewFavorite = (favorite_params) => {
          title: favorite_params.title,
          search_id: favorite_params.search_id,
          poster: favorite_params.poster,
+         genre: favorite_params.genre,
          user_id: favorite_params.user_id
       })
    }).then(res => res.json())

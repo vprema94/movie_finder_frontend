@@ -8,17 +8,19 @@ import { addFavorite } from '../actions/allActions'
 class MovieInfo extends Component {
 
    handleClick = () => {
+      const genres = this.props.movieInfo.genres.map(g => g.title).join()
+
       let favorite = {
          title: this.props.movieInfo.title,
          search_id: this.props.movieInfo.id,
          poster: this.props.movieInfo['poster_240x342'],
+         genre: genres,
          user_id: this.props.currentUser
       }
       this.props.addFavorite(favorite)
       handleNewFavorite(favorite)
-   }
-
-
+   } 
+   
    render() {
       const sourceIcons = makeIcons(this.props.movieInfo).map((source, index) => 
          <Card id='source-icon' key={index}>
@@ -28,19 +30,41 @@ class MovieInfo extends Component {
             </a>
          </Card>)
 
+      const favPoster = 
+         <Container id='movie-poster'>
+            <Popup
+               trigger={<Image 
+                  src={this.props.movieInfo['poster_400x570']} 
+                  label={{ as: 'a', corner: 'left', icon: 'heart', size: 'huge', color: 'red', onClick: this.handleClick}}>
+                  </Image>}
+               content="Add to Favorites"
+               position='top left'
+            />
+         </Container>
+
+      const notFavPoster = 
+         <Container id='movie-poster'>
+            <Popup
+               trigger={<Image 
+                  src={this.props.movieInfo['poster_400x570']} 
+                  label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
+                  </Image>}
+               content="Add to Favorites"
+               position='top left'
+            />
+         </Container>
+
+      let showPoster
+      if (this.props.favorites.find(fav => fav.title === this.props.movieInfo.title)) {
+         showPoster = favPoster
+      } else {
+         showPoster = notFavPoster
+      }
+
       return(
          <Grid.Row id='movie-pg-body'>
             <Grid.Column>
-               <Container id='movie-poster'>
-                  <Popup
-                     trigger={<Image 
-                        src={this.props.movieInfo['poster_400x570']} 
-                        label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
-                        </Image>}
-                     content="Add to Favorites"
-                     position='top left'
-                  />
-               </Container>
+               {showPoster}
             </Grid.Column>
 
             <Grid.Column>
@@ -65,7 +89,8 @@ const mapStatetoProps = state => {
    console.log(state)
    return ({
      movieInfo: state.movieInfo,
-     currentUser: state.currentUser
+     currentUser: state.currentUser,
+     favorites: state.favorites
    })
 }
 

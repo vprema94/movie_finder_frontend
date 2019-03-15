@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
-import { changeForm, changePage, setCurrentUser, addFavorite } from '../actions/allActions'
+import { changeForm, changePage, setCurrentUser, setUserFavorites } from '../actions/allActions'
 import { handleNewUser, getAuthToken, getFavorites } from '../sofetch/services'
 
 class OpeningPage extends Component {
@@ -41,7 +41,7 @@ class OpeningPage extends Component {
 				this.props.changePage('a')
 				this.props.setCurrentUser(payload.user.id)
 				getFavorites(payload.user.id.toString())
-				.then(data => this.props.addFavorite(data.movies))
+				.then(data => this.props.setUserFavorites(data.movies))
 			} else {
 				alert("INVALID LOGIN!")
 			}
@@ -179,4 +179,4 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { changePage, changeForm, setCurrentUser, addFavorite})(OpeningPage);
+export default connect(mapStatetoProps, { changePage, changeForm, setCurrentUser, setUserFavorites})(OpeningPage);
