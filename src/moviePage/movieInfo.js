@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Image, Divider, Grid, Card } from 'semantic-ui-react';
+import { Container, Image, Divider, Grid, Card, Popup } from 'semantic-ui-react';
 import { makeIcons } from '../sofetch/helper'
+import { handleNewFavorite } from '../sofetch/services'
+import { addFavorite } from '../actions/allActions'
 
 class MovieInfo extends Component {
+
+   handleClick = () => {
+      let favorite = {
+         title: this.props.movieInfo.title,
+         search_id: this.props.movieInfo.id,
+         poster: this.props.movieInfo['poster_240x342'],
+         user_id: this.props.currentUser
+      }
+      this.props.addFavorite(favorite)
+      handleNewFavorite(favorite)
+   }
+
+
    render() {
       const sourceIcons = makeIcons(this.props.movieInfo).map((source, index) => 
          <Card id='source-icon' key={index}>
@@ -17,7 +32,14 @@ class MovieInfo extends Component {
          <Grid.Row id='movie-pg-body'>
             <Grid.Column>
                <Container id='movie-poster'>
-                  <Image src={this.props.movieInfo['poster_400x570']}></Image>
+                  <Popup
+                     trigger={<Image 
+                        src={this.props.movieInfo['poster_400x570']} 
+                        label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
+                        </Image>}
+                     content="Add to Favorites"
+                     position='top left'
+                  />
                </Container>
             </Grid.Column>
 
@@ -40,9 +62,11 @@ class MovieInfo extends Component {
 }
 
 const mapStatetoProps = state => {
+   console.log(state)
    return ({
-     movieInfo: state.movieInfo
+     movieInfo: state.movieInfo,
+     currentUser: state.currentUser
    })
 }
 
-export default connect(mapStatetoProps)(MovieInfo);
+export default connect(mapStatetoProps, { addFavorite })(MovieInfo);

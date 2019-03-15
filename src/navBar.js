@@ -5,16 +5,21 @@ import { Menu, Input } from 'semantic-ui-react';
 import { getSearch, getMovies } from './sofetch/services';
 
 class NavBar extends Component {
+   constructor() {
+      super()
    
-   state = {
-      activeItem: this.props.whichPage
+      this.state = {
+         activeItem: 'a'
+      }
    }
 
    handleClick = (letter) => {
+      this.setState({activeItem: letter})
       this.props.changePage(letter)
    }
 
    handleLogout = () => {
+      this.setState({activeItem: 'o'})
       window.location.reload()
    }
 
@@ -32,17 +37,12 @@ class NavBar extends Component {
       return(
          <Menu pointing secondary id='nav-bar'>
             <Menu.Item
-            name='home' 
+            name='HOME' 
             active={this.state.activeItem === 'a'} 
             onClick={() => this.handleClick('a')} />
 
             <Menu.Item
-            name='Logout' 
-            active={this.state.activeItem === 'o'} 
-            onClick={this.handleLogout} />
-
-            <Menu.Item
-            name='favorites'
+            name='FAVORITES'
             // active={this.state.activeItem === 'messages'}
             // onClick={this.handleItemClick}
             />
@@ -51,8 +51,11 @@ class NavBar extends Component {
                <Menu.Item>
                   <Input icon='search' placeholder='SEARCH MOVIES' onChange={this.handleSearch} />
                </Menu.Item>
+               <Menu.Item
+                  name='LOGOUT' 
+                  active={this.state.activeItem === 'o'} 
+                  onClick={this.handleLogout} />
             </Menu.Menu>
-
          </Menu>
       )
    }

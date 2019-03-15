@@ -39,3 +39,17 @@ export const clickPersonTwo = (personMovies) => {
       personMovies
    }
 }
+
+export const addFavorite = (favoriteMovie) => {
+   return {
+      type: 'ADD_FAVORITE',
+      favoriteMovie
+   }
+}
+
+export const setCurrentUser = (user_id) => {
+   return {
+      type: 'SET_CURRENT_USER',
+      user_id
+   }
+}

@@ -6,7 +6,7 @@ class LandingBar extends Component {
    render() {
       return(
          <Container id='landing-container'>
-            <Header id='landing-header'>WELCOME</Header> 
+            <Header id='landing-header'>CINEPOP</Header> 
          </Container>
       )
    }

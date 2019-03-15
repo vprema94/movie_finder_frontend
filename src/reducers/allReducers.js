@@ -4,7 +4,9 @@ let initialState = {
   landingMovies: [],
   movieInfo: [],
   personInfo: [],
-  personMovies: []
+  personMovies: [],
+  favorites: [], 
+  currentUser: null
 }
 
 export default (state=initialState, action) => {
@@ -48,6 +50,19 @@ export default (state=initialState, action) => {
           whichPage: 'p',
           personMovies: action.personMovies
         }
+
+        case 'ADD_FAVORITE':
+        return {
+          ...state,
+          favorites: [...state.favorites, ...action.favoriteMovie]
+        }
+
+        case 'SET_CURRENT_USER':
+        return {
+          ...state,
+          currentUser: action.user_id
+        }
+
 
     default:
       return initialState;

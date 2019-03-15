@@ -20,5 +20,6 @@ body {
 
 
 #nav-bar {
-   margin: 1em 3em 1em 3em
+   margin: 1em 42px 1em 42px;
+   font-size: 18px;
 }

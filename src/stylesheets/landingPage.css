@@ -15,11 +15,11 @@
 }
 
 #landing-header {
-   font-size: 90px;
+   font-size: 100px;
    letter-spacing: 3px;
    text-align: center;
    font-family: 'Righteous', cursive;
-   text-shadow: 2px 2px 10px white
+   text-shadow: 2px 2px 4px white
 }
 
 #card-content {

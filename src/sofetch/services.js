@@ -1,5 +1,5 @@
 const LOCAL = 'http://localhost:3000';
-const KEY = ''
+const KEY = '6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce'
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
 
 export const handleNewUser = (username, password) => {
@@ -55,18 +55,28 @@ export const getAuthToken = (loginInfo) => {
    }).then(res => res.json())
 } 
 
-// finishLogin = (res) => {
-//    res.json()
-//    .then(data => {
-//       setTimeout(() => {
-//          this.setState({
-//             myPokemonList: data.pokemons,
-//             filteredPoke: data.pokemons,
-//             mainPoke: data.pokemons[0],
-//             currentUser: data,
-//             enterPage: 'a'
-//          })
-//       }, 3000)
-//    })
-//    this.renderRandomPoke()
-// }
+export const getFavorites = (user_id) => {
+   return fetch(`${LOCAL}/users/${user_id}`, {
+      methods: "GET",
+      headers: {
+         "Content-Type": "application/json",
+         "Authorization": localStorage.getItem('token')
+      }
+   }).then(res => res.json())
+}
+
+export const handleNewFavorite = (favorite_params) => {
+   return fetch(`${LOCAL}/movies`, {
+      method: "POST",
+      headers: {
+         "Content-Type": "application/json",
+         "Authorization": localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+         title: favorite_params.title,
+         search_id: favorite_params.search_id,
+         poster: favorite_params.poster,
+         user_id: favorite_params.user_id
+      })
+   }).then(res => res.json())
+}

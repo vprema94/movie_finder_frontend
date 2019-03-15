@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
-import { changeForm, changePage } from '../actions/allActions'
-import { handleNewUser, getAuthToken } from '../sofetch/services'
+import { changeForm, changePage, setCurrentUser, addFavorite } from '../actions/allActions'
+import { handleNewUser, getAuthToken, getFavorites } from '../sofetch/services'
 
 class OpeningPage extends Component {
-
-   state = {
-      username: '',
-		password: '',
-		newUsername: '',
-		newPassword: ''
-   }
+	constructor() {
+		super()
+		
+		this.state = {
+			username: '',
+			password: '',
+			newUsername: '',
+			newPassword: ''
+		}
+	}
 
    handleChange = (event) => {
       this.setState({
@@ -34,17 +37,16 @@ class OpeningPage extends Component {
 	handleLogin = () => {
 		getAuthToken({ username: this.state.username, password: this.state.password}).then(payload => {
 			if (payload.user) {
-				localStorage.setItem("token", payload.token)
+				localStorage.setItem('token', payload.jwt)
 				this.props.changePage('a')
-				// return fetch(`${API}/users/${payload.user.id.toString()}`).then(this.finishLogin)
+				this.props.setCurrentUser(payload.user.id)
+				getFavorites(payload.user.id.toString())
+				.then(data => this.props.addFavorite(data.movies))
 			} else {
 				alert("INVALID LOGIN!")
 			}
 		})
 	}
-
-	//finishLogin in services, edit to include favorites and fetch user data
-
 
 	render() {
 		const login = 
@@ -177,4 +179,4 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { changePage, changeForm })(OpeningPage);
+export default connect(mapStatetoProps, { changePage, changeForm, setCurrentUser, addFavorite})(OpeningPage);
