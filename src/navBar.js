@@ -43,8 +43,8 @@ class NavBar extends Component {
 
             <Menu.Item
             name='FAVORITES'
-            // active={this.state.activeItem === 'messages'}
-            // onClick={this.handleItemClick}
+            active={this.state.activeItem === 'f'}
+            onClick={() => this.handleClick('f')}
             />
 
             <Menu.Menu position='right'>

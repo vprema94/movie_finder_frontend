@@ -4,6 +4,7 @@ import OpeningPage from './pages/openingPage';
 import LandingPage from './pages/landingPage';
 import MoviePage from './pages/moviePage';
 import PersonPage from './pages/personPage';
+import FavoritesPage from './pages/favoritesPage';
 import NavBar from './navBar'
 import { connect } from 'react-redux';
 import { changePage } from './actions/allActions'
@@ -35,6 +36,13 @@ class App extends Component {
         <div id="movie-background">
           <NavBar />
           <PersonPage />
+        </div>
+      )
+    } else if (this.props.whichPage === 'f') {
+      return (
+        <div>
+          <NavBar />
+          <FavoritesPage />
         </div>
       )
     } else {

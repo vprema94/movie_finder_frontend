@@ -93,5 +93,5 @@ export const deleteFavorite = (user_id, movie_id) => {
          user_id: user_id,
          movie_id: movie_id
       })
-    })  
+   })  
 } 
