@@ -80,4 +80,18 @@ export const handleNewFavorite = (favorite_params) => {
          user_id: favorite_params.user_id
       })
    }).then(res => res.json())
-}
+} 
+
+export const deleteFavorite = (user_id, movie_id) => {
+   return fetch(`${LOCAL}/removeFavorites`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('token')
+      },
+      body: JSON.stringify({
+         user_id: user_id,
+         movie_id: movie_id
+      })
+    })  
+} 

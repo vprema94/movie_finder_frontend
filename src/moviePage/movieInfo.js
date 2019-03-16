@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Image, Divider, Grid, Card, Popup } from 'semantic-ui-react';
 import { makeIcons } from '../sofetch/helper'
-import { handleNewFavorite } from '../sofetch/services'
-import { addFavorite } from '../actions/allActions'
+import { handleNewFavorite, getFavorites, deleteFavorite } from '../sofetch/services'
+import { setUserFavorites } from '../actions/allActions'
 
 class MovieInfo extends Component {
 
@@ -17,8 +17,21 @@ class MovieInfo extends Component {
          genre: genres,
          user_id: this.props.currentUser
       }
-      this.props.addFavorite(favorite)
-      handleNewFavorite(favorite)
+      
+      let favedMovie
+      if (this.props.favorites !== []) {
+         favedMovie = this.props.favorites.find(fav => fav.search_id === this.props.movieInfo.id)
+      }
+
+      if (favedMovie) {
+         deleteFavorite(this.props.currentUser, favedMovie.id)
+         .then(() => getFavorites(this.props.currentUser))
+         .then(data => this.props.setUserFavorites(data.movies))
+      } else {
+         handleNewFavorite(favorite)
+         .then(() => getFavorites(this.props.currentUser))
+         .then(data => this.props.setUserFavorites(data.movies))
+      }
    } 
    
    render() {
@@ -35,9 +48,9 @@ class MovieInfo extends Component {
             <Popup
                trigger={<Image 
                   src={this.props.movieInfo['poster_400x570']} 
-                  label={{ as: 'a', corner: 'left', icon: 'heart', size: 'huge', color: 'red', onClick: this.handleClick}}>
+                  label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
                   </Image>}
-               content="Add to Favorites"
+               content="Remove from Favorites"
                position='top left'
             />
          </Container>
@@ -47,7 +60,7 @@ class MovieInfo extends Component {
             <Popup
                trigger={<Image 
                   src={this.props.movieInfo['poster_400x570']} 
-                  label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
+                  label={{ as: 'a', corner: 'left', icon: 'add', size: 'huge', color: 'olive', onClick: this.handleClick}}>
                   </Image>}
                content="Add to Favorites"
                position='top left'
@@ -55,7 +68,9 @@ class MovieInfo extends Component {
          </Container>
 
       let showPoster
-      if (this.props.favorites.find(fav => fav.title === this.props.movieInfo.title)) {
+      if (!this.props.favorites) {
+         showPoster = notFavPoster
+      } else if (this.props.favorites.find(fav => fav.search_id === this.props.movieInfo.id)) {
          showPoster = favPoster
       } else {
          showPoster = notFavPoster
@@ -94,4 +109,4 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { addFavorite })(MovieInfo);
+export default connect(mapStatetoProps, { setUserFavorites })(MovieInfo);

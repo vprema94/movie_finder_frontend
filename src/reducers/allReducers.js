@@ -51,12 +51,6 @@ export default (state=initialState, action) => {
           personMovies: action.personMovies
         }
 
-        case 'ADD_FAVORITE':
-        return {
-          ...state,
-          favorites: [...state.favorites, action.favoriteMovie]
-        }
-
         case 'SET_CURRENT_USER':
         return {
           ...state,
@@ -66,10 +60,9 @@ export default (state=initialState, action) => {
         case 'SET_USER_FAVORITES':
         return {
           ...state,
-          favorites: [...state.favorites, ...action.favoriteMovies]
+          favorites: action.favoriteMovies
         }
-
-
+        
     default:
       return initialState;
     }

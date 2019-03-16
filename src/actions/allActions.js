@@ -40,12 +40,12 @@ export const clickPersonTwo = (personMovies) => {
    }
 }
 
-export const addFavorite = (favoriteMovie) => {
-   return {
-      type: 'ADD_FAVORITE',
-      favoriteMovie
-   }
-}
+// export const handleFavorite = (favoriteMovie) => {
+//    return {
+//       type: 'HANDLE_FAVORITE',
+//       favoriteMovie
+//    }
+// }
 
 export const setUserFavorites = (favoriteMovies) => {
    return {
@@ -59,4 +59,4 @@ export const setCurrentUser = (user_id) => {
       type: 'SET_CURRENT_USER',
       user_id
    }
-}
+} 
