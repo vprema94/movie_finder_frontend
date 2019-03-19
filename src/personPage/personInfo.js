@@ -17,10 +17,6 @@ class PersonInfo extends Component {
                   <b>ABOUT</b>
                   <Divider />
                   <p>{this.props.personInfo.description}</p>
-                  <br/><br/>
-                  <b>PUT SOMETHING HERE...</b>
-                  <Divider />
-                  <Container id='sources-container'></Container>
                </Container>
             </Grid.Column>
          </Grid.Row>

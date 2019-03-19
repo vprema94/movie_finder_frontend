@@ -5,6 +5,7 @@ import LandingPage from './pages/landingPage';
 import MoviePage from './pages/moviePage';
 import PersonPage from './pages/personPage';
 import FavoritesPage from './pages/favoritesPage';
+import LoadingPage from './pages/loadingPage';
 import NavBar from './navBar'
 import { connect } from 'react-redux';
 import { changePage } from './actions/allActions'
@@ -47,8 +48,8 @@ class App extends Component {
       )
     } else {
       return (
-        <div>
-          DID YOU CHANGE whichPage CORRECTLY?
+        <div id="loading-background">
+          <LoadingPage />
         </div>
       )
     } 

@@ -40,13 +40,6 @@ export const clickPersonTwo = (personMovies) => {
    }
 }
 
-// export const handleFavorite = (favoriteMovie) => {
-//    return {
-//       type: 'HANDLE_FAVORITE',
-//       favoriteMovie
-//    }
-// }
-
 export const setUserFavorites = (favoriteMovies) => {
    return {
       type: 'SET_USER_FAVORITES',

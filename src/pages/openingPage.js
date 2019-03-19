@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
-import { changeForm, changePage, setCurrentUser, setUserFavorites } from '../actions/allActions'
-import { handleNewUser, getAuthToken, getFavorites } from '../sofetch/services'
+import { changeForm, changePage, setCurrentUser, setUserFavorites, landMovies } from '../actions/allActions'
+import { handleNewUser, getAuthToken, getFavorites, getMovies } from '../sofetch/services'
 
 class OpeningPage extends Component {
 	constructor() {
@@ -15,7 +15,7 @@ class OpeningPage extends Component {
 			newUsername: '',
 			newPassword: ''
 		}
-	}
+	} 
 
    handleChange = (event) => {
       this.setState({
@@ -38,10 +38,14 @@ class OpeningPage extends Component {
 		getAuthToken({ username: this.state.username, password: this.state.password}).then(payload => {
 			if (payload.user) {
 				localStorage.setItem('token', payload.jwt)
-				this.props.changePage('a')
+				this.props.changePage('l')
 				this.props.setCurrentUser(payload.user.id)
+				getMovies()
+				.then((data) => {this.props.landMovies(data.results)})
 				getFavorites(payload.user.id.toString())
-				.then(data => this.props.setUserFavorites(data.movies))
+				.then(data => {
+					this.props.setUserFavorites(data.movies);
+				})
 			} else {
 				alert("INVALID LOGIN!")
 			}
@@ -183,4 +187,4 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { changePage, changeForm, setCurrentUser, setUserFavorites})(OpeningPage);
+export default connect(mapStatetoProps, { changePage, changeForm, setCurrentUser, setUserFavorites, landMovies })(OpeningPage);
