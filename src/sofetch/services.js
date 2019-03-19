@@ -19,6 +19,12 @@ export const getMovies = () => {
    return fetch(`${GB_BASE}/movies/all/0/56`, {
       method: "GET"
    }).then(res => res.json())
+} 
+
+export const getFilteredMovies = (source) => {
+   return fetch(`${GB_BASE}/movies/all/0/56/${source}`, {
+      method: "GET"
+   }).then(res => res.json())
 }
 
 export const getSearch = (entry) => {

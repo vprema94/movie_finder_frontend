@@ -59,6 +59,7 @@ class OpeningPage extends Component {
 					<Input
 						placeholder='USERNAME'
 						name='username'
+						autoComplete='off'
 						onChange={this.handleChange}
 						icon='user' 
 						iconPosition='left'
@@ -70,6 +71,7 @@ class OpeningPage extends Component {
 						placeholder='PASSWORD'
 						name='password'
 						type='password'
+						autoComplete='off'
                   onChange={this.handleChange}
 						icon='lock' 
 						iconPosition='left'
@@ -95,6 +97,7 @@ class OpeningPage extends Component {
 					<Input
 						placeholder='USERNAME'
 						name='newUsername'
+						autoComplete='off'
                   onChange={this.handleChange}
 						icon='user' 
 						iconPosition='left'
@@ -106,6 +109,7 @@ class OpeningPage extends Component {
 						placeholder='PASSWORD'
 						name='newPassword'
 						type='password'
+						autoComplete='off'
                   onChange={this.handleChange}
 						icon='lock' 
 						iconPosition='left'

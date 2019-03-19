@@ -17,10 +17,10 @@ class FavCard extends Component {
             onClick={() => this.handleClick(this.props.movieId)}
             id='movie-card'
             >
-            <Image src={this.props.img}  />
+            <Image src={this.props.img}></Image>
          </Card>
       )
    }
-}
+} 
 
 export default connect(null, { clickMovie })(FavCard);

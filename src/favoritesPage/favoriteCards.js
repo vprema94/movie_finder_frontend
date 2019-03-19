@@ -10,7 +10,7 @@ class FavoriteCards extends Component {
          <FavCard
             key={movie.id}
             movieId={movie.search_id}
-            img={movie['poster_240x342']} />)
+            img={movie.poster} />)
    
       return(
          <Card.Group itemsPerRow={7}>

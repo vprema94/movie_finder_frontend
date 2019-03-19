@@ -1,38 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Image, Divider, Grid, Card, Popup } from 'semantic-ui-react';
+import FavPoster from './favPoster'
+import NotFavPoster from './notFavPoster'
+import { Container, Image, Divider, Grid, Card } from 'semantic-ui-react';
 import { makeIcons } from '../sofetch/helper'
-import { handleNewFavorite, getFavorites, deleteFavorite } from '../sofetch/services'
 import { setUserFavorites } from '../actions/allActions'
 
 class MovieInfo extends Component {
-
-   handleClick = () => {
-      const genres = this.props.movieInfo.genres.map(g => g.title).join()
-
-      let favorite = {
-         title: this.props.movieInfo.title,
-         search_id: this.props.movieInfo.id,
-         poster: this.props.movieInfo['poster_240x342'],
-         genre: genres,
-         user_id: this.props.currentUser
-      }
-      
-      let favedMovie
-      if (this.props.favorites !== []) {
-         favedMovie = this.props.favorites.find(fav => fav.search_id === this.props.movieInfo.id)
-      }
-
-      if (favedMovie) {
-         deleteFavorite(this.props.currentUser, favedMovie.id)
-         .then(() => getFavorites(this.props.currentUser))
-         .then(data => this.props.setUserFavorites(data.movies))
-      } else {
-         handleNewFavorite(favorite)
-         .then(() => getFavorites(this.props.currentUser))
-         .then(data => this.props.setUserFavorites(data.movies))
-      }
-   } 
    
    render() {
       const sourceIcons = makeIcons(this.props.movieInfo).map((source, index) => 
@@ -43,37 +17,13 @@ class MovieInfo extends Component {
             </a>
          </Card>)
 
-      const favPoster = 
-         <Container id='movie-poster'>
-            <Popup
-               trigger={<Image 
-                  src={this.props.movieInfo['poster_400x570']} 
-                  label={{ as: 'a', corner: 'left', icon: 'film', size: 'huge', color: 'red', onClick: this.handleClick}}>
-                  </Image>}
-               content="Remove from Favorites"
-               position='top left'
-            />
-         </Container>
-
-      const notFavPoster = 
-         <Container id='movie-poster'>
-            <Popup
-               trigger={<Image 
-                  src={this.props.movieInfo['poster_400x570']} 
-                  label={{ as: 'a', corner: 'left', icon: 'add', size: 'huge', color: 'olive', onClick: this.handleClick}}>
-                  </Image>}
-               content="Add to Favorites"
-               position='top left'
-            />
-         </Container>
-
       let showPoster
       if (!this.props.favorites) {
-         showPoster = notFavPoster
+         showPoster = <NotFavPoster />
       } else if (this.props.favorites.find(fav => fav.search_id === this.props.movieInfo.id)) {
-         showPoster = favPoster
+         showPoster = <FavPoster />
       } else {
-         showPoster = notFavPoster
+         showPoster = <NotFavPoster />
       }
 
       return(
@@ -101,10 +51,8 @@ class MovieInfo extends Component {
 }
 
 const mapStatetoProps = state => {
-   console.log(state)
    return ({
      movieInfo: state.movieInfo,
-     currentUser: state.currentUser,
      favorites: state.favorites
    })
 }
