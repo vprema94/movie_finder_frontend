@@ -1,5 +1,6 @@
 body {
    background-color: hsla(0,0%,100%,.3);
+   height: fit-content
 } 
 
 #movie-background {

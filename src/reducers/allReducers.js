@@ -3,11 +3,11 @@ let initialState = {
   whichForm: 'b',
   landingMovies: [],
   movieInfo: [],
-  movieTrailer: null,
   personInfo: [],
   personMovies: [],
   favorites: [], 
-  currentUser: null
+  currentUser: null,
+  filter: 'all'
 }
 
 export default (state=initialState, action) => {
@@ -29,6 +29,12 @@ export default (state=initialState, action) => {
           ...state,
           whichPage: 'a', 
           landingMovies: action.data
+        } 
+
+      case 'LAND_MORE_MOVIES':
+        return {
+          ...state,
+          landingMovies: [...state.landingMovies, ...action.data]
         }
       
       case 'CLICK_MOVIE':
@@ -62,6 +68,12 @@ export default (state=initialState, action) => {
         return {
           ...state,
           favorites: action.favoriteMovies
+        } 
+
+        case 'TOGGLE_FILTER':
+        return {
+          ...state, 
+          filter: action.source
         }
         
     default:

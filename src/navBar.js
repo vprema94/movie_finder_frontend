@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeForm, changePage, landMovies } from './actions/allActions'
+import { changeForm, changePage, landMovies, toggleFilter } from './actions/allActions'
 import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import { getSearch, getMovies, getFilteredMovies } from './sofetch/services';
 
@@ -27,6 +27,7 @@ class NavBar extends Component {
    }
 
    handleFilter = (event, data) => {
+      this.props.toggleFilter(data.value)
       if (data.value === 'all') {
          getMovies()
          .then((data) => {this.props.landMovies(data.results)})
@@ -137,7 +138,7 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { changeForm, changePage, landMovies })(NavBar);
+export default connect(mapStatetoProps, { changeForm, changePage, landMovies, toggleFilter })(NavBar);
 
 
 

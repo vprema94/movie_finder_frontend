@@ -17,6 +17,13 @@ export const landMovies = (data) => {
       type: 'LAND_MOVIES',
       data
    }
+} 
+
+export const landMoreMovies = (data) => {
+   return {
+      type: 'LAND_MORE_MOVIES',
+      data
+   }
 }
 
 export const clickMovie = (movieInfo) => {
@@ -51,5 +58,12 @@ export const setCurrentUser = (user_id) => {
    return {
       type: 'SET_CURRENT_USER',
       user_id
+   }
+} 
+
+export const toggleFilter = (source) => {
+   return {
+      type: 'TOGGLE_FILTER',
+      source   
    }
 } 
