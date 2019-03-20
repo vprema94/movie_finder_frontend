@@ -24,7 +24,7 @@ export const clickMovie = (movieInfo) => {
       type: 'CLICK_MOVIE',
       movieInfo
    }
-}
+} 
 
 export const clickPerson = (personInfo) => {
    return {

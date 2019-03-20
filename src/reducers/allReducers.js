@@ -3,6 +3,7 @@ let initialState = {
   whichForm: 'b',
   landingMovies: [],
   movieInfo: [],
+  movieTrailer: null,
   personInfo: [],
   personMovies: [],
   favorites: [], 

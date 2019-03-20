@@ -23,4 +23,10 @@ class MovieCard extends Component {
    }
 } 
 
-export default connect(null, { clickMovie })(MovieCard);
+const mapStatetoProps = state => {
+   return ({
+     movieInfo: state.movieInfo
+   })
+}
+
+export default connect(mapStatetoProps, { clickMovie })(MovieCard);

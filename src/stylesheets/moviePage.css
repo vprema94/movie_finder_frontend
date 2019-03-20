@@ -67,6 +67,12 @@ b {
 #icon-image {
    width: inherit;
    height: inherit
+} 
+
+#trailer-container {
+   padding-bottom: 5em;
+   display:flex;
+   flex-direction: column;
 }
 
 #cast-container {
@@ -75,5 +81,7 @@ b {
 }
 
 #cast-cards {
-   padding-top: 0px
-}
+   padding-top: 0px;
+   overflow-y: scroll;
+   height: 734px;
+} 

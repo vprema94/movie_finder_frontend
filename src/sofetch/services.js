@@ -1,6 +1,8 @@
 const LOCAL = 'http://localhost:3000';
 const KEY = ''
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
+const MDB_BASE = `http://api.themoviedb.org/3/movie`
+const MDB_KEY = ``
 
 export const handleNewUser = (username, password) => {
    return fetch(`${LOCAL}/users`, {
@@ -35,6 +37,12 @@ export const getSearch = (entry) => {
 
 export const getMovieInfo = (movieId) => {
    return fetch(`${GB_BASE}/movie/${movieId}`, {
+      method: "GET"
+   }).then(res => res.json())
+} 
+
+export const getMovieTrailer = (movieId) => {
+   return fetch(`${MDB_BASE}/${movieId}/videos?api_key=${MDB_KEY}`, {
       method: "GET"
    }).then(res => res.json())
 }

@@ -3,25 +3,14 @@ import { connect } from 'react-redux';
 import { changeForm, changePage, landMovies } from './actions/allActions'
 import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import { getSearch, getMovies, getFilteredMovies } from './sofetch/services';
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
-
 
 class NavBar extends Component {
-   constructor() {
-      super()
-   
-      this.state = {
-         activeItem: 'null'
-      }
-   }
 
    handleClick = (letter) => {
-      this.setState({activeItem: letter})
       this.props.changePage(letter)
    }
 
    handleLogout = () => {
-      this.setState({activeItem: 'o'})
       this.props.changePage('o')
       this.props.changeForm('b')
       localStorage.clear()
@@ -30,10 +19,10 @@ class NavBar extends Component {
    handleSearch = async event => {
       if (event.target.value === '') {
          getMovies()
-         .then((data) => {this.props.landMovies(data.results)})
+         .then((data) => this.props.landMovies(data.results))
       } else {
-         const data = await AwesomeDebouncePromise(getSearch(event.target.value), 1000)
-         this.props.landMovies(data.results)
+         getSearch(event.target.value)
+         .then((data) => this.props.landMovies(data.results))
       }
    }
 
@@ -46,7 +35,6 @@ class NavBar extends Component {
          .then((data) => {this.props.landMovies(data.results)})
       }
    } 
-
    
    render() {
       const sourceOptions = [
@@ -111,12 +99,12 @@ class NavBar extends Component {
          <Menu secondary id='nav-bar'>
             <Menu.Item
             name='HOME' 
-            active={this.state.activeItem === 'a'} 
+            active={this.props.whichPage === 'a'} 
             onClick={() => this.handleClick('a')} />
 
             <Menu.Item
             name='FAVORITES'
-            active={this.state.activeItem === 'f'}
+            active={this.props.whichPage === 'f'}
             onClick={() => this.handleClick('f')}
             /> 
 
@@ -135,7 +123,7 @@ class NavBar extends Component {
                </Menu.Item>
                <Menu.Item
                   name='LOGOUT' 
-                  active={this.state.activeItem === 'o'} 
+                  active={this.props.whichPage === 'o'} 
                   onClick={this.handleLogout} />
             </Menu.Menu>
          </Menu>
