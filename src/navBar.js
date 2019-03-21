@@ -16,7 +16,7 @@ class NavBar extends Component {
       localStorage.clear()
    }
 
-   handleSearch = async event => {
+   handleSearch = event => {
       if (event.target.value === '') {
          getMovies()
          .then((data) => this.props.landMovies(data.results))
@@ -50,51 +50,6 @@ class NavBar extends Component {
          {  text: 'HBO NOW',
             value:'hbo_now' }
       ] 
-      
-      // const genreOptions = [
-      //    {  text: 'ACTION',
-      //       value:'action' }, 
-      //    {  text: 'ADVENTURE',
-      //       value:'adventure'}, 
-      //    {  text: 'ANIMATION',
-      //       value:'animation' },
-      //    {  text: 'BIOGRAPHY',
-      //       value:'biography' }, 
-      //    {  text: 'CHILDREN',
-      //       value:'children' },
-      //    {  text: 'COMEDY',
-      //       value:'comedy' }, 
-      //    {  text: 'CRIME',
-      //       value:'crime'}, 
-      //    {  text: 'DOCUMENTARY',
-      //       value:'documentary' },
-      //    {  text: 'DRAMA',
-      //       value:'drama' }, 
-      //    {  text: 'FAMILY',
-      //       value:'family' },
-      //    {  text: 'FANTASY',
-      //       value:'fantasy' }, 
-      //    {  text: 'HISTORY',
-      //       value:'history'}, 
-      //    {  text: 'HORROR',
-      //       value:'horror' },
-      //    {  text: 'MUSICAL',
-      //       value:'musical' }, 
-      //    {  text: 'MYSTERY',
-      //       value:'mystery' },
-      //    {  text: 'ROMANCE',
-      //       value:'romance'}, 
-      //    {  text: 'SCIENCE FICTION',
-      //       value:'science-fiction' },
-      //    {  text: 'SPORT',
-      //       value:'sport' }, 
-      //    {  text: 'THRILLER',
-      //       value:'thriller' },
-      //    {  text: 'WAR',
-      //       value:'war' }, 
-      //    {  text: 'WESTERN',
-      //       value:'western' },
-      // ]
 
       return(
          <Menu secondary id='nav-bar'>
