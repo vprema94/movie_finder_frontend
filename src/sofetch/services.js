@@ -85,7 +85,7 @@ export const getAuthToken = (loginInfo) => {
 
 export const getFavorites = (user_id) => {
    return fetch(`${LOCAL}/users/${user_id}`, {
-      methods: "GET",
+      method: "GET",
       headers: {
          "Content-Type": "application/json",
          "Authorization": localStorage.getItem('token')

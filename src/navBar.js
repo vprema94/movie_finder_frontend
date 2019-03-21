@@ -5,6 +5,11 @@ import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import { getSearch, getMovies, getFilteredMovies } from './sofetch/services';
 
 class NavBar extends Component {
+   constructor() {
+      super() 
+
+      this.timeout = 0
+   }
 
    handleClick = (letter) => {
       this.props.changePage(letter)
@@ -14,16 +19,20 @@ class NavBar extends Component {
       this.props.changePage('o')
       this.props.changeForm('b')
       localStorage.clear()
-   }
+   } 
 
-   handleSearch = event => {
-      if (event.target.value === '') {
-         getMovies()
-         .then((data) => this.props.landMovies(data.results))
-      } else {
-         getSearch(event.target.value)
-         .then((data) => this.props.landMovies(data.results))
-      }
+   handleSearch = (event) => {
+      event.persist()
+      if (this.timeout) { clearTimeout(this.timeout) }
+      this.timeout = setTimeout(() => {
+         if (event.target.value === "") {
+            getMovies()
+            .then((data) => this.props.landMovies(data.results))
+         } else {
+            getSearch(event.target.value)
+            .then((data) => this.props.landMovies(data.results))
+         }
+      }, 500)
    }
 
    handleFilter = (event, data) => {
