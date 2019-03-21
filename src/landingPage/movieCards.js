@@ -24,7 +24,7 @@ class MovieCards extends Component {
    }
   
    onScroll = () => {
-      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) && !this.props.landingMovies.isLoading) 
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight) && !this.props.landingMovies.isLoading) 
          {this.onPaginatedSearch()}
    } 
 

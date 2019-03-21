@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FavPoster from './favPoster'
 import NotFavPoster from './notFavPoster'
-import { Container, Image, Divider, Grid, Card } from 'semantic-ui-react';
-import { makeIcons } from '../sofetch/helper'
+import { Container, Divider, Grid } from 'semantic-ui-react';
 import { setUserFavorites } from '../actions/allActions'
 
 class MovieInfo extends Component {
    
    render() {
-      const sourceIcons = makeIcons(this.props.movieInfo).map((source, index) => 
-         <Card id='source-icon' key={index}>
-            <a href={source.link} target='_blank' rel="noopener noreferrer">
-               <Image id='icon-image' src={source.icon}>
-               </Image>
-            </a>
-         </Card>)
+      const directors = this.props.movieInfo.directors.map(d => d.name).join(', ')
+      const writers = this.props.movieInfo.writers.map(w => w.name).join(', ')
 
       let showPoster
       if (!this.props.favorites) {
@@ -37,12 +31,14 @@ class MovieInfo extends Component {
                   <b>OVERVIEW</b>
                   <Divider />
                   <p>{this.props.movieInfo.overview}</p>
-                  <br/><br/>
-                  <b>WATCH IT ON:</b>
+                  <br/>
+                  <b>DIRECTED BY:</b>
                   <Divider />
-                  <Container id='sources-container'>
-                     {sourceIcons}
-                  </Container>
+                  <p>{directors}</p>
+                  <br/>
+                  <b>WRITTEN BY:</b>
+                  <Divider />
+                  <p>{writers}</p>
                </Container>
             </Grid.Column>
          </Grid.Row>
@@ -51,6 +47,7 @@ class MovieInfo extends Component {
 }
 
 const mapStatetoProps = state => {
+   console.log(state)
    return ({
      movieInfo: state.movieInfo,
      favorites: state.favorites

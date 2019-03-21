@@ -53,4 +53,64 @@ export const makeIcons = (movieInfo) => {
       }
    })
    return sourceArr
-} 
+}  
+
+export const allSources = [
+   {  text: 'ALL',
+      value:'all' }, 
+   {  text: 'NETFLIX',
+      value:'netflix'}, 
+   {  text: 'HULU',
+      value:'hulu_plus' },
+   {  text: 'AMAZON PRIME',
+      value:'amazon_prime' }, 
+   {  text: 'HBO NOW',
+      value:'hbo_now' }
+] 
+
+export const allGenres = [
+   {  text: 'ALL',
+      value:'all' }, 
+   {  text: 'ACTION',
+      value:'action' }, 
+   {  text: 'ADVENTURE',
+      value:'adventure'}, 
+   {  text: 'ANIMATION',
+      value:'animation' },
+   {  text: 'BIOGRAPHY',
+      value:'biography' }, 
+   {  text: 'CHILDREN',
+      value:'children' },
+   {  text: 'COMEDY',
+      value:'comedy' }, 
+   {  text: 'CRIME',
+      value:'crime'}, 
+   {  text: 'DOCUMENTARY',
+      value:'documentary' },
+   {  text: 'DRAMA',
+      value:'drama' }, 
+   {  text: 'FAMILY',
+      value:'family' },
+   {  text: 'FANTASY',
+      value:'fantasy' }, 
+   {  text: 'HISTORY',
+      value:'history'}, 
+   {  text: 'HORROR',
+      value:'horror' },
+   {  text: 'MUSICAL',
+      value:'musical' }, 
+   {  text: 'MYSTERY',
+      value:'mystery' },
+   {  text: 'ROMANCE',
+      value:'romance'}, 
+   {  text: 'SCIENCE FICTION',
+      value:'science-fiction' },
+   {  text: 'SPORT',
+      value:'sport' }, 
+   {  text: 'THRILLER',
+      value:'thriller' },
+   {  text: 'WAR',
+      value:'war' }, 
+   {  text: 'WESTERN',
+      value:'western' },
+]

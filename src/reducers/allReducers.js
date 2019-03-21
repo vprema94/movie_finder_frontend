@@ -7,7 +7,9 @@ let initialState = {
   personMovies: [],
   favorites: [], 
   currentUser: null,
-  filter: 'all'
+  filter: 'all',
+  filteredFavorites: [],
+  favFilter: 'all'
 }
 
 export default (state=initialState, action) => {
@@ -74,6 +76,18 @@ export default (state=initialState, action) => {
         return {
           ...state, 
           filter: action.source
+        } 
+
+        case 'SET_FILTERED_FAVS':
+        return {
+          ...state,
+          filteredFavorites: action.filteredFavs
+        } 
+
+        case 'TOGGLE_FAV_FILTER':
+        return {
+          ...state, 
+          favFilter: action.genre
         }
         
     default:

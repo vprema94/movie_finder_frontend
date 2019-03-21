@@ -66,4 +66,18 @@ export const toggleFilter = (source) => {
       type: 'TOGGLE_FILTER',
       source   
    }
+}  
+
+export const toggleFavFilter = (genre) => {
+   return {
+      type: 'TOGGLE_FAV_FILTER',
+      genre
+   }
 } 
+
+export const setFilteredFavs = (filteredFavs) => {
+   return {
+      type: 'SET_FILTERED_FAVS',
+      filteredFavs
+   }
+}

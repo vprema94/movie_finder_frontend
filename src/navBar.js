@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeForm, changePage, landMovies, toggleFilter } from './actions/allActions'
+import { changeForm, changePage, landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs } from './actions/allActions'
 import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import { getSearch, getMovies, getFilteredMovies } from './sofetch/services';
+import { allSources, allGenres } from './sofetch/helper';
 
 class NavBar extends Component {
    constructor() {
@@ -35,7 +36,7 @@ class NavBar extends Component {
       }, 500)
    }
 
-   handleFilter = (event, data) => {
+   handleSourceFilter = (event, data) => {
       this.props.toggleFilter(data.value)
       if (data.value === 'all') {
          getMovies()
@@ -45,20 +46,35 @@ class NavBar extends Component {
          .then((data) => {this.props.landMovies(data.results)})
       }
    } 
+
+   handleGenreFilter = (event, data) => {
+      this.props.toggleFavFilter(data.value)
+      if (data.value === 'all') {
+         this.props.setUserFavorites(this.props.favorites)
+      } else {
+         let newFavs = this.props.favorites.filter(fav => fav.genre.toLowerCase().includes(data.value))
+         this.props.setFilteredFavs(newFavs)
+      }
+   } 
    
    render() {
-      const sourceOptions = [
-         {  text: 'ALL',
-            value:'all' }, 
-         {  text: 'NETFLIX',
-            value:'netflix'}, 
-         {  text: 'HULU',
-            value:'hulu_plus' },
-         {  text: 'AMAZON PRIME',
-            value:'amazon_prime' }, 
-         {  text: 'HBO NOW',
-            value:'hbo_now' }
-      ] 
+      const sourceOptions = allSources
+      const genreOptions = allGenres
+
+      let filter 
+      if (this.props.whichPage === 'a') {
+         filter = <Dropdown 
+            placeholder='FILTER BY SOURCE'
+            options={sourceOptions} 
+            selection
+            onChange={this.handleSourceFilter} />    
+      } else if (this.props.whichPage === 'f') {
+         filter = <Dropdown 
+            placeholder='FILTER BY GENRE'
+            options={genreOptions} 
+            selection
+            onChange={this.handleGenreFilter} />   
+      }
 
       return(
          <Menu secondary id='nav-bar'>
@@ -74,12 +90,7 @@ class NavBar extends Component {
             /> 
 
             <Menu.Item>
-               <Dropdown 
-                  placeholder='FILTER MOVIES'
-                  options={sourceOptions} 
-                  selection
-                  onChange={this.handleFilter}
-               />               
+              {filter}
             </Menu.Item>
 
             <Menu.Menu position='right'>
@@ -98,11 +109,12 @@ class NavBar extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     whichPage: state.whichPage
+     whichPage: state.whichPage,
+     favorites: state.favorites
    })
 }
 
-export default connect(mapStatetoProps, { changeForm, changePage, landMovies, toggleFilter })(NavBar);
+export default connect(mapStatetoProps, { changeForm, changePage, landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs })(NavBar);
 
 
 

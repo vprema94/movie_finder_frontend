@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 
 class MovieBar extends Component {
    render() {
-      const genres = this.props.movieInfo.genres.map(g => g.title)
+      const genres = this.props.movieInfo.genres.map(g => g.title).join(', ')
+
       return(
          <Container id='movie-pg-header'>
             <Header id='movie-title-header'>{this.props.movieInfo.title} ({this.props.movieInfo.release_year})</Header>
-            <Header id='sub-header'> {this.props.movieInfo.rating} | {genres.join(', ')}</Header>
+            <Header id='sub-header'> {this.props.movieInfo.rating} | {genres}</Header> 
          </Container> 
       )
    }

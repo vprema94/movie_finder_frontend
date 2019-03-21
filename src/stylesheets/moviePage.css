@@ -33,7 +33,7 @@
 #movie-pg-body {
    display: flex;
    margin-top: 1.5em;
-   padding-bottom: 5em;
+   padding-bottom: 4em;
 } 
 
 #movie-stuff {
@@ -51,17 +51,21 @@ b {
    font-size: 25px
 } 
 
+#sources-row {
+   padding-bottom: 4em;
+   display:flex;
+   flex-direction: column;
+}
+
 #sources-container {
    display: flex;
-   justify-content: space-around;
    flex-wrap: wrap
 } 
 
 #source-icon {
-	width: 70px;
+   width: 70px;
    height: 70px;
-   overflow: hidden;
-   margin: 0px
+   margin: 0px 13px 0px 13px;
 } 
 
 #icon-image {
@@ -70,7 +74,7 @@ b {
 } 
 
 #trailer-container {
-   padding-bottom: 5em;
+   padding-bottom: 4em;
    display:flex;
    flex-direction: column;
 }
@@ -81,6 +85,17 @@ b {
 }
 
 #cast-cards {
+   padding-top: 0px;
+   overflow-y: scroll;
+   height: 734px;
+} 
+
+#features-container {
+   display:flex;
+   flex-direction: column;
+} 
+
+#feature-cards {
    padding-top: 0px;
    overflow-y: scroll;
    height: 734px;
