@@ -19,7 +19,10 @@ class MoviePage extends Component {
 
    componentDidMount() {
       getMovieTrailer(this.props.movieInfo.themoviedb)
-      .then((data) => this.setState({movieTrailer: data.results[0].key}))
+      .then((data) => {
+         let trailerInfo = data.results.find(trailer => trailer.name.toLowerCase().includes('trailer'))
+         this.setState({movieTrailer: trailerInfo.key})
+      })
    }
 
    render() {
