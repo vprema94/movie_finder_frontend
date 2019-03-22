@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Image, Card} from 'semantic-ui-react';
 import { clickPerson, clickPersonTwo } from '../actions/allActions'
@@ -9,6 +10,7 @@ class MoviePerson extends Component {
    handleClick = (memberId) => {
       getPersonInfo(memberId).then((data) => {this.props.clickPerson(data)})
       getPersonMovies(memberId).then((data) => {this.props.clickPersonTwo(data.results)})
+      .then(() => this.props.history.push(`/cast/${memberId}`))
    }
    
    render() {
@@ -28,4 +30,4 @@ class MoviePerson extends Component {
    }
 }
 
-export default connect(null, { clickPerson, clickPersonTwo })(MoviePerson);
+export default withRouter(connect(null, { clickPerson, clickPersonTwo })(MoviePerson));

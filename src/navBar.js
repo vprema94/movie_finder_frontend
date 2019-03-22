@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { changeForm, changePage, landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs } from './actions/allActions'
+import { landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs } from './actions/allActions'
 import { Menu, Input, Dropdown } from 'semantic-ui-react';
 import { getSearch, getMovies, getFilteredMovies } from './sofetch/services';
 import { allSources, allGenres } from './sofetch/helper';
@@ -12,13 +13,8 @@ class NavBar extends Component {
       this.timeout = 0
    }
 
-   handleClick = (letter) => {
-      this.props.changePage(letter)
-   }
-
    handleLogout = () => {
-      this.props.changePage('o')
-      this.props.changeForm('b')
+      this.props.history.push('/')
       localStorage.clear()
    } 
 
@@ -33,7 +29,7 @@ class NavBar extends Component {
             getSearch(event.target.value)
             .then((data) => this.props.landMovies(data.results))
          }
-      }, 500)
+      }, 300)
    }
 
    handleSourceFilter = (event, data) => {
@@ -62,13 +58,13 @@ class NavBar extends Component {
       const genreOptions = allGenres
 
       let filter 
-      if (this.props.whichPage === 'a') {
+      if (this.props.location.pathname === '/welcome') {
          filter = <Dropdown 
             placeholder='FILTER BY SOURCE'
             options={sourceOptions} 
             selection
             onChange={this.handleSourceFilter} />    
-      } else if (this.props.whichPage === 'f') {
+      } else if (this.props.location.pathname === '/favorites') {
          filter = <Dropdown 
             placeholder='FILTER BY GENRE'
             options={genreOptions} 
@@ -80,13 +76,13 @@ class NavBar extends Component {
          <Menu secondary id='nav-bar'>
             <Menu.Item
             name='HOME' 
-            active={this.props.whichPage === 'a'} 
-            onClick={() => this.handleClick('a')} />
+            active={this.props.location.pathname === '/welcome'} 
+            onClick={() => this.props.history.push('/welcome')} />
 
             <Menu.Item
             name='FAVORITES'
-            active={this.props.whichPage === 'f'}
-            onClick={() => this.handleClick('f')}
+            active={this.props.location.pathname === '/favorites'}
+            onClick={() => this.props.history.push('/favorites')}
             /> 
 
             <Menu.Item>
@@ -99,7 +95,6 @@ class NavBar extends Component {
                </Menu.Item>
                <Menu.Item
                   name='LOGOUT' 
-                  active={this.props.whichPage === 'o'} 
                   onClick={this.handleLogout} />
             </Menu.Menu>
          </Menu>
@@ -109,12 +104,11 @@ class NavBar extends Component {
 
 const mapStatetoProps = state => {
    return ({
-     whichPage: state.whichPage,
      favorites: state.favorites
    })
 }
 
-export default connect(mapStatetoProps, { changeForm, changePage, landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs })(NavBar);
+export default withRouter(connect(mapStatetoProps, { landMovies, toggleFilter, setUserFavorites, toggleFavFilter, setFilteredFavs })(NavBar));
 
 
 

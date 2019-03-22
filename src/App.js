@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import './stylesheets/App.css';
 import OpeningPage from './pages/openingPage';
 import LandingPage from './pages/landingPage';
@@ -6,60 +7,24 @@ import MoviePage from './pages/moviePage';
 import PersonPage from './pages/personPage';
 import FavoritesPage from './pages/favoritesPage';
 import LoadingPage from './pages/loadingPage';
-import NavBar from './navBar'
-import { connect } from 'react-redux';
-import { changePage } from './actions/allActions'
+import LoginPage from './pages/loginPage';
+import SignUpPage from './pages/signUpPage';
 
 class App extends Component {
   render() {
-    if (this.props.whichPage === 'o') {
-      return (
-        <div>
-          <OpeningPage />
-        </div>
-      );
-    } else if (this.props.whichPage === 'a') {
-      return (
-        <div>
-          <NavBar />
-          <LandingPage />
-        </div>
-      )
-    } else if (this.props.whichPage === 'm') {
-      return (
-        <div id="movie-background">
-          <NavBar />
-          <MoviePage />
-        </div>
-      )
-    } else if (this.props.whichPage === 'p') {
-      return (
-        <div id="movie-background">
-          <NavBar />
-          <PersonPage />
-        </div>
-      )
-    } else if (this.props.whichPage === 'f') {
-      return (
-        <div>
-          <NavBar />
-          <FavoritesPage />
-        </div>
-      )
-    } else {
-      return (
-        <div id="loading-background">
-          <LoadingPage />
-        </div>
-      )
-    } 
+    return (
+      <Switch>
+        <Route exact path='/' component={OpeningPage} />
+        <Route exact path='/login' component={LoginPage} />
+        <Route exact path='/signup' component={SignUpPage} />
+        <Route exact path='/loading' component={LoadingPage} />
+        <Route exact path='/welcome' component={LandingPage} />
+        <Route exact path='/movies/:id' component={MoviePage} />
+        <Route exact path='/cast/:id' component={PersonPage} />
+        <Route exact path='/favorites' component={FavoritesPage} />
+      </Switch>
+    )
   }
 }
 
-const mapStatetoProps = state => {
-  return ({
-    whichPage: state.whichPage
-  })
-}
-
-export default connect(mapStatetoProps, {changePage})(App);
+export default withRouter(App);

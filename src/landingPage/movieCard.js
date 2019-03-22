@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { clickMovie } from '../actions/allActions'
@@ -9,6 +10,7 @@ class MovieCard extends Component {
    handleClick = (movieId) => {
       getMovieInfo(movieId)
       .then((data) => {this.props.clickMovie(data)})
+      .then(() => this.props.history.push(`/movies/${movieId}`))
    }
 
    render() {
@@ -29,4 +31,4 @@ const mapStatetoProps = state => {
    })
 }
 
-export default connect(mapStatetoProps, { clickMovie })(MovieCard);
+export default withRouter(connect(mapStatetoProps, { clickMovie })(MovieCard));

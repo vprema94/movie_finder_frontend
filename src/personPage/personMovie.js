@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Image, Card} from 'semantic-ui-react';
 import { clickMovie } from '../actions/allActions'
 import { getMovieInfo } from '../sofetch/services'
@@ -9,6 +10,7 @@ class PersonMovie extends Component {
    handleClick = (movieId) => {
       getMovieInfo(movieId)
       .then((data) => {this.props.clickMovie(data)})
+      .then(() => this.props.history.push(`/movies/${movieId}`))
    }
    
    render() {
@@ -28,4 +30,4 @@ class PersonMovie extends Component {
    }
 }
 
-export default connect(null, { clickMovie })(PersonMovie);
+export default withRouter(connect(null, { clickMovie })(PersonMovie));

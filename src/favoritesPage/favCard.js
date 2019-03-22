@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Image, Card} from 'semantic-ui-react';
 import { clickMovie } from '../actions/allActions'
@@ -9,6 +10,7 @@ class FavCard extends Component {
    handleClick = (movieId) => {
       getMovieInfo(movieId)
       .then((data) => {this.props.clickMovie(data)})
+      .then(() => this.props.history.push(`/movies/${movieId}`))
    } 
 
    render() {
@@ -23,4 +25,4 @@ class FavCard extends Component {
    }
 } 
 
-export default connect(null, { clickMovie })(FavCard);
+export default withRouter(connect(null, { clickMovie })(FavCard));
