@@ -20,7 +20,7 @@
    font-size: 72px;
    text-align: left;
    font-family: 'Righteous', cursive;
-   width: max-content;
+   width: inherit;
 }
 
 #sub-header {
@@ -78,6 +78,10 @@ b {
    padding-bottom: 4em;
    display:flex;
    flex-direction: column;
+} 
+
+#no-trailer {
+   font-size: 18px;
 }
 
 #cast-container {

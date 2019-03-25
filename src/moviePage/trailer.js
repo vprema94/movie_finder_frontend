@@ -17,18 +17,22 @@ class Trailer extends Component {
    componentDidMount() {
       getMovieTrailer(this.props.movieInfo.themoviedb)
       .then((data) => {
-         let trailerInfo = data.results.find(trailer => trailer.name.toLowerCase().includes('trailer'))
-         this.setState({movieTrailer: trailerInfo.key})
+         if (data.results) {
+            let trailerInfo = data.results.find(trailer => trailer.name.toLowerCase().includes('trailer'))
+            this.setState({movieTrailer: trailerInfo.key})
+         } else {
+            this.setState({movieTrailer: null})
+         }
       })
    }
 
    render() {
       let trailer
       if (this.state.movieTrailer === null) {
-         trailer = null
+         trailer = <p id='no-trailer'>Sorry, trailer does not exist.</p>
       } else {
          trailer = <Embed id={this.state.movieTrailer}
-         placeholder='/images/image-16by9.png' source='youtube' active={true}  aspectRatio='16:9' />
+         placeholder='/images/image-16by9.png' source='youtube' active={true} aspectRatio='16:9' autoplay={false} />
       } 
 
       return(

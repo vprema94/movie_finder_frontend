@@ -1,5 +1,5 @@
 const LOCAL = 'http://localhost:3000';
-const KEY = ''
+const KEY = ``
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
 const MDB_BASE = `http://api.themoviedb.org/3/movie`
 const MDB_KEY = ``
