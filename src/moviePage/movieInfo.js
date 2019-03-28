@@ -47,7 +47,6 @@ class MovieInfo extends Component {
 }
 
 const mapStatetoProps = state => {
-   console.log(state)
    return ({
      movieInfo: state.movieInfo,
      favorites: state.favorites

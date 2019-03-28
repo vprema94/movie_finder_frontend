@@ -13,7 +13,13 @@ class SignUpPage extends Component {
 			newUsername: '',
 			newPassword: ''
 		}
-	} 
+   } 
+   
+   handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
+   } 
 
    handleSignup = (event) => {
       event.preventDefault()

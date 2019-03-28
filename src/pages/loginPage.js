@@ -28,7 +28,7 @@ class LoginPage extends Component {
 		getAuthToken({ username: this.state.username, password: this.state.password}).then(payload => {
 			if (payload.user) {
 				localStorage.setItem('token', payload.jwt)
-				this.props.history.push('/loading')
+				this.props.history.push('/cinepop')
 				this.props.setCurrentUser(payload.user.id)
 				getMovies()
 				.then((data) => {this.props.landMovies(data.results)})

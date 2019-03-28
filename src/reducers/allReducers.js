@@ -26,19 +26,20 @@ export default (state=initialState, action) => {
         }
       
       case 'CLICK_MOVIE':
-      console.log(action.movieInfo)
         return {
           ...state,
           movieInfo: action.movieInfo
         }
       
       case 'CLICK_PERSON':
+      console.log(action.personInfo)
         return {
           ...state,
           personInfo: action.personInfo
         }
 
       case 'CLICK_PERSON_TWO':
+      console.log(action.personMovies)
         return {
           ...state,
           personMovies: action.personMovies

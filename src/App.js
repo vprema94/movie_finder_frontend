@@ -17,7 +17,7 @@ class App extends Component {
         <Route exact path='/' component={OpeningPage} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/signup' component={SignUpPage} />
-        <Route exact path='/loading' component={LoadingPage} />
+        <Route exact path='/cinepop' component={LoadingPage} />
         <Route exact path='/welcome' component={LandingPage} />
         <Route exact path='/movies/:id' component={MoviePage} />
         <Route exact path='/cast/:id' component={PersonPage} />

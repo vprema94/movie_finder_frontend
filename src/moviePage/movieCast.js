@@ -16,7 +16,7 @@ class MovieCast extends Component {
             />)
 
       return(
-         <Grid.Row id='cast-container'>
+         <Grid.Row id='cast-container '>
             <b>CAST</b>
             <Divider />
             <br/>

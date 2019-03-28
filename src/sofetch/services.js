@@ -24,7 +24,6 @@ export const getMovies = () => {
 } 
 
 export const getMoreMovies = (start) => {
-   console.log('fetching more movies!')
    return fetch(`${GB_BASE}/movies/all/${start}/56`, {
       method: "GET"
    }).then(res => res.json())
@@ -37,7 +36,6 @@ export const getFilteredMovies = (source) => {
 }
 
 export const getMoreFilteredMovies = (start, source) => {
-   console.log('fetching more filtered movies!')
    return fetch(`${GB_BASE}/movies/all/${start}/56/${source}`, {
       method: "GET"
    }).then(res => res.json())
