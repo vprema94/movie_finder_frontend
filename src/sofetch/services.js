@@ -1,8 +1,8 @@
 const LOCAL = 'http://localhost:3000';
-const KEY = ``
+const KEY = `6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce`
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
 const MDB_BASE = `http://api.themoviedb.org/3/movie`
-const MDB_KEY = ``
+const MDB_KEY = `07583907ce52b046bc98c4ddc696f915`
 
 export const handleNewUser = (username, password) => {
    return fetch(`${LOCAL}/users`, {
