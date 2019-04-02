@@ -70,7 +70,12 @@ class NavBar extends Component {
             options={genreOptions} 
             selection
             onChange={this.handleGenreFilter} />   
-      }
+      } 
+
+      let searchBar
+      if (this.props.location.pathname === '/welcome') {
+         searchBar = <Input icon='search' placeholder='SEARCH MOVIES' onChange={this.handleSearch} />
+      } 
 
       return(
          <Menu secondary id='nav-bar'>
@@ -91,7 +96,7 @@ class NavBar extends Component {
 
             <Menu.Menu position='right'>
                <Menu.Item>
-                  <Input icon='search' placeholder='SEARCH MOVIES' onChange={this.handleSearch} />
+                  {searchBar}
                </Menu.Item>
                <Menu.Item
                   name='LOGOUT' 

@@ -20,6 +20,8 @@ class MovieCast extends Component {
             <b>CAST</b>
             <Divider />
             <br/>
+            <br/>
+            <br/>
             <Card.Group id='cast-cards' itemsPerRow={6}>
                {movieCast}
             </Card.Group>

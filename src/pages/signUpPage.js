@@ -3,15 +3,16 @@ import { withRouter } from 'react-router-dom';
 import { Button, Form, Input } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
 import { connect } from 'react-redux';
-import { handleNewUser } from '../sofetch/services'
+import { handleNewUser, getAuthToken, getFavorites, getMovies } from '../sofetch/services'
+import { setCurrentUser, setUserFavorites, landMovies } from '../actions/allActions'
 
 class SignUpPage extends Component {
    constructor() {
 		super()
 		
 		this.state = {
-			newUsername: '',
-			newPassword: ''
+			username: '',
+			password: ''
 		}
    } 
    
@@ -23,15 +24,30 @@ class SignUpPage extends Component {
 
    handleSignup = (event) => {
       event.preventDefault()
-		handleNewUser(this.state.newUsername, this.state.newPassword);
-		event.target.reset()
-		this.props.history.push(`/login`)
-      this.setState({
-        newUsername: '',
-        newPassword: ''
-		})
-	} 
-
+      handleNewUser(this.state.username, this.state.password)
+      .then(res => {
+         if (res.errors) {
+            alert("sorry, username has already been taken") 
+         } else {
+            getAuthToken({ username: this.state.username, password: this.state.password})
+            .then(payload => {
+               localStorage.setItem('token', payload.jwt)
+               this.props.history.push('/cinepop')
+               this.props.setCurrentUser(payload.user.id)
+               getMovies()
+               .then((data) => {this.props.landMovies(data.results)})
+               .then(() => this.props.history.push(`/welcome`))
+               getFavorites(payload.user.id.toString())
+               .then(data => {this.props.setUserFavorites(data.movies)})
+               })
+            .then(this.setState({
+               username: '',
+               password: ''
+            }))
+         }
+      })
+   } 
+   
    render() {
       return(
          <div className='ui inverted vertical center aligned segment'
@@ -42,7 +58,7 @@ class SignUpPage extends Component {
                <Form.Field>
                   <Input
                      placeholder='USERNAME'
-                     name='newUsername'
+                     name='username'
                      autoComplete='off'
                      onChange={this.handleChange}
                      icon='user' 
@@ -53,7 +69,7 @@ class SignUpPage extends Component {
                <Form.Field>
                   <Input
                      placeholder='PASSWORD'
-                     name='newPassword'
+                     name='password'
                      type='password'
                      autoComplete='off'
                      onChange={this.handleChange}
@@ -77,9 +93,8 @@ class SignUpPage extends Component {
 
 const mapStatetoProps = state => {
    return ({
-	  start: state.start,
-	  end: state.end
+	  start: state.start
    })
 }
 
-export default withRouter(connect(mapStatetoProps)(SignUpPage));
+export default withRouter(connect(mapStatetoProps, { setCurrentUser, setUserFavorites, landMovies })(SignUpPage));
