@@ -1,4 +1,4 @@
-const LOCAL = 'http://localhost:3000';
+const LOCAL = 'https://pacific-ocean-14825.herokuapp.com';
 const KEY = `6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce`
 const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
 const MDB_BASE = `http://api.themoviedb.org/3/movie`
