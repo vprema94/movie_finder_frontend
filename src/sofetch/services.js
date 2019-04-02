@@ -1,7 +1,7 @@
 const LOCAL = 'https://pacific-ocean-14825.herokuapp.com';
 const KEY = `6e21e1c2e72e7bfb98c9e0e6f7114dd18391dcce`
-const GB_BASE = `http://api-public.guidebox.com/v2/us/${KEY}`
-const MDB_BASE = `http://api.themoviedb.org/3/movie`
+const GB_BASE = `https://api-public.guidebox.com/v2/us/${KEY}`
+const MDB_BASE = `https://api.themoviedb.org/3/movie`
 const MDB_KEY = `07583907ce52b046bc98c4ddc696f915`
 
 export const handleNewUser = (username, password) => {
