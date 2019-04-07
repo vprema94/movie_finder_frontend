@@ -8,9 +8,9 @@ class LoadingPage extends Component {
 
    render() {
       return(
-         <div id="loading-background" style="flex-direction:column">
-            <h1 style="color:white">Sorry, we are under construction</h1>
-            <Image id='loading-pic' style="width:500px" src={loadingPic}/>
+         <div id="loading-background">
+            <h1 style={{color: white}}>Sorry, we are under construction</h1>
+            <Image id='loading-pic' style={{width: 50+'px'}} src={loadingPic}/>
          </div>
       )
    }
