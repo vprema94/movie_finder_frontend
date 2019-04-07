@@ -10,7 +10,7 @@ class LoadingPage extends Component {
       return(
          <div id="loading-background">
             <h1 style={{color: 'white'}}>Sorry, we are under construction</h1>
-            <Image id='loading-pic' style={{width: 50+'px'}} src={loadingPic}/>
+            <Image id='loading-pic' style={{width: 500+'px'}} src={loadingPic}/>
          </div>
       )
    }
