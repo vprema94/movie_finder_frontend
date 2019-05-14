@@ -1,9 +1,27 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import '../stylesheets/openingPage.css';
+import { getAuthToken, getFavorites, getMovies } from '../sofetch/services'
+import { setCurrentUser, setUserFavorites, landMovies } from '../actions/allActions'
 
 class OpeningPage extends Component {
+	handleDemo = () => {
+		getAuthToken({ username: "hello", password: "world"}).then(payload => {
+			if (payload.user) {
+				localStorage.setItem('token', payload.jwt)
+				this.props.history.push('/cinepop')
+				this.props.setCurrentUser(payload.user.id)
+				getMovies()
+				.then((data) => {this.props.landMovies(data.results)})
+				.then(() => this.props.history.push(`/welcome`))
+				getFavorites(payload.user.id.toString())
+				.then(data => {this.props.setUserFavorites(data.movies)})
+			} 
+      })
+	}
+
 	render() {      
 		return (
 			<div className='ui inverted vertical center aligned segment'
@@ -23,10 +41,19 @@ class OpeningPage extends Component {
 						onClick={() => this.props.history.push(`/signup`)}>
 						SIGN UP
 					</Button>
+
+				</div>
+				<div>
+					<Button
+						id='demo-btn'
+						color='green'
+						onClick={this.handleDemo}>
+						CLICK HERE FOR DEMO
+					</Button>
 				</div>
 			</div>
 		)
 	}
 }
 
-export default withRouter(OpeningPage);
+export default withRouter(connect(null, { setCurrentUser, setUserFavorites, landMovies })(OpeningPage));
