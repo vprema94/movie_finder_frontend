@@ -43,14 +43,14 @@ class OpeningPage extends Component {
 					</Button>
 
 				</div>
-				<div>
+				{/* <div>
 					<Button
 						id='demo-btn'
 						color='green'
 						onClick={this.handleDemo}>
 						CLICK HERE FOR DEMO
 					</Button>
-				</div>
+				</div> */}
 			</div>
 		)
 	}
